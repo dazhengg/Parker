@@ -5,7 +5,7 @@ Lihang Pan, Haoran Zhang, Zekai Zhao, David Zheng
 # General Design
 ![alt text][picture]  
   
-[picture]: https://github.com/ECS189E/Parker/raw/master/GeneralDesign.png "Should have a picture here"
+[picture]: GeneralDesign.png "Should have a picture here"
 
 # Current List of Third Party Library
 SVProgressHUD 
