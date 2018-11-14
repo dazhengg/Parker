@@ -3,7 +3,8 @@
 Lihang Pan, Haoran Zhang, Zekai Zhao, David Zheng
 
 # General Design
-![alt text][logo]
+![alt text][logo]  
+  
 [logo]: https://github.com/ECS189E/Parker/raw/master/GeneralDesign.HEIC
 
 # Current List of Third Party Library
