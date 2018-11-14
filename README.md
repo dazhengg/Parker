@@ -3,9 +3,7 @@
 Lihang Pan, Haoran Zhang, Zekai Zhao, David Zheng
 
 # General Design
-![alt text][picture]  
-  
-[picture]: GeneralDesign.png "Should have a picture here"
+Please see the GeneralDesign.HEIC under the root directory
 
 # Current List of Third Party Library
 SVProgressHUD 
