@@ -14,6 +14,9 @@ Currently unclear, seems like we won't use server this time
 # Models
 TImer Model, Map Model, and camera
 
+# Trello Board
+Trello board is set up.
+
 # ViewController 
 > Main View Controller(VC1)
 > > 1. VC1 to VC2 : An info button on the upper left corner of the screen
