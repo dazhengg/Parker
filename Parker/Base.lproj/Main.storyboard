@@ -251,6 +251,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUh-JY-FRU">
                                         <rect key="frame" x="20" y="0.0" width="173" height="161"/>
                                         <state key="normal" title="Button" image="location_button"/>
+                                        <connections>
+                                            <action selector="locateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wiW-Z1-xSi"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXk-ud-84H">
                                         <rect key="frame" x="228" y="0.0" width="168" height="161"/>
