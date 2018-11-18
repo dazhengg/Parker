@@ -19,7 +19,40 @@ class MapViewController: UIViewController , CLLocationManagerDelegate{
 			locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 			locationManager.startUpdatingLocation()
 		}
+        //add transition using swipegesture
+        let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        upSwipe.direction = .up
+        self.view.addGestureRecognizer(upSwipe)
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        leftSwipe.direction = .left
+        self.view.addGestureRecognizer(leftSwipe)
 	}
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer){
+        if sender.state == .ended{
+            switch sender.direction{
+                
+            case .up:
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vb = storyboard.instantiateViewController(withIdentifier: "takepictureViewController") as! takepictureViewController
+                self.present(vb, animated: true, completion: nil)
+            case .left:
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vb = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController
+                self.present(vb, animated: false, completion: nil)
+            default:
+                break
+                
+            }
+            
+           
+            
+        }
+    }
+    
+    
+
+
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()

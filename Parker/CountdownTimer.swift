@@ -30,7 +30,18 @@ class CountdownTimerViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         
+        self.view.addGestureRecognizer(rightSwipe)
+        
+    }
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer){
+        if sender.state == .ended{
+            
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vb = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController
+                self.present(vb, animated: false, completion: nil)
+            }
     }
     
     @IBAction func start(_ sender: UIButton) {

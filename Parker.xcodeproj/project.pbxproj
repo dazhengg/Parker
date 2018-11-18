@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		045A1CC021A0EF6A004E46C7 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A1CBF21A0EF6A004E46C7 /* Timer.swift */; };
 		045A1CC221A0EF89004E46C7 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */; };
+		045A1CC421A1020E004E46C7 /* Takepicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A1CC321A1020E004E46C7 /* Takepicture.swift */; };
 		6A9F0DFB21A0E0CB009436A1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9F0DFA21A0E0CB009436A1 /* SettingViewController.swift */; };
 		71988D1EF226E661E5F4C909 /* Pods_Parker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980037EFB8C2E6EE2C701058 /* Pods_Parker.framework */; };
 		BF247D6C219645CA00948E85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF247D6B219645CA00948E85 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		045A1CBF21A0EF6A004E46C7 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
+		045A1CC321A1020E004E46C7 /* Takepicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Takepicture.swift; sourceTree = "<group>"; };
 		6A9F0DFA21A0E0CB009436A1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		92048ACF94127D0BF6CC7893 /* Pods-Parker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Parker/Pods-Parker.debug.xcconfig"; sourceTree = "<group>"; };
 		980037EFB8C2E6EE2C701058 /* Pods_Parker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,7 @@
 				6A9F0DFD21A0E0E3009436A1 /* CustomViewController */,
 				BF247D6B219645CA00948E85 /* AppDelegate.swift */,
 				BF247D6F219645CA00948E85 /* Main.storyboard */,
+				045A1CC321A1020E004E46C7 /* Takepicture.swift */,
 				045A1CBF21A0EF6A004E46C7 /* Timer.swift */,
 				045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */,
 				BF247D72219645CD00948E85 /* Assets.xcassets */,
@@ -228,6 +231,7 @@
 				045A1CC221A0EF89004E46C7 /* CountdownTimer.swift in Sources */,
 				BF247D6E219645CA00948E85 /* MapViewController.swift in Sources */,
 				BF247D6C219645CA00948E85 /* AppDelegate.swift in Sources */,
+				045A1CC421A1020E004E46C7 /* Takepicture.swift in Sources */,
 				6A9F0DFB21A0E0CB009436A1 /* SettingViewController.swift in Sources */,
 				045A1CC021A0EF6A004E46C7 /* Timer.swift in Sources */,
 			);

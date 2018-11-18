@@ -70,7 +70,38 @@ class TimerViewController: UIViewController{
         let link = CADisplayLink(target: self, selector: #selector(TimerViewController.clockRunning))
         link.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
         //link.add(to: RunLoop.main, forMode: .RunLoop.Mode.default)
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        //upSwipe.direction = .up
+        self.view.addGestureRecognizer(rightSwipe)
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+        leftSwipe.direction = .left
+        self.view.addGestureRecognizer(leftSwipe)
     }
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer){
+        if sender.state == .ended{
+            switch sender.direction{
+                
+            case .right:
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                self.present(vb, animated: false, completion: nil)
+            case .left:
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vb = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
+                self.present(vb, animated: false, completion: nil)
+            default:
+                break
+                
+            }
+            
+            
+            
+        }
+    }
+    
+    
+    
     
     @objc func clockRunning() {
         
