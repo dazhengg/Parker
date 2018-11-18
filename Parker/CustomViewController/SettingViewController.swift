@@ -19,6 +19,7 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func GoBackToMapVC(_ sender: Any) {
+        why my commits is not showing
         self.dismiss(animated: true, completion: nil)
     }
     
