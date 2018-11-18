@@ -158,7 +158,7 @@ class TimerViewController: UIViewController{
     }
     func runTimer() {
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(CountdownTimerViewController.updateTimer)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(TimerViewController.updateTimer)), userInfo: nil, repeats: true)
         isTimerRunning = true
     }
     @objc func updateTimer() {

@@ -136,11 +136,11 @@ extension CountdownTimerViewController: UIPickerViewDelegate, UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0:
-            return "\(row) Hour"
+            return "\(row) "
         case 1:
-            return "\(row) Minute"
+            return "\(row) "
         case 2:
-            return "\(row) Second"
+            return "\(row) "
         default:
             return ""
         }
