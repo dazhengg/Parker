@@ -118,6 +118,7 @@
                     </view>
                     <connections>
                         <outlet property="Timepresent" destination="RIz-ev-3tE" id="SgU-mt-sav"/>
+                        <outlet property="start" destination="AVN-dh-tmN" id="AQA-yS-mtn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yM-nm-npG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -217,6 +218,7 @@
                     </view>
                     <connections>
                         <outlet property="picker" destination="C8T-Hd-ZCq" id="fpe-3O-4HE"/>
+                        <outlet property="start" destination="Qq8-sf-N5H" id="OXo-Gx-7xj"/>
                         <outlet property="timershowing" destination="6zL-Hy-8XD" id="wPM-xa-Sj1"/>
                     </connections>
                 </viewController>

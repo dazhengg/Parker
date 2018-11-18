@@ -14,6 +14,7 @@ class TimerViewController: UIViewController{
     
     
     @IBOutlet weak var Timepresent: UILabel!
+    @IBOutlet weak var start: UIButton!
     var hour: Int = 0
     var minutes: Int = 0
     
@@ -115,7 +116,7 @@ class TimerViewController: UIViewController{
         
         let currentTime = calendar.dateComponents([Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second], from: currentDate)
         
-        // 根据当前秒、分、时数分别计算秒针、分针、时针偏转弧度
+        // calculating angular for minute, hour and second
         let secondAngle = CGFloat ( Double(currentTime.second!) * (Double.pi * 2.0 / 60) )
         secondHandView.transform = CGAffineTransform(rotationAngle: secondAngle)
         
@@ -141,17 +142,20 @@ class TimerViewController: UIViewController{
     
     if self.resumeTapped == false {
             timer.invalidate()
+            start.isEnabled = false
             self.resumeTapped = true
         } else {
             runTimer()
             self.resumeTapped = false
         }
+        
     }
     
     @IBAction func reset(_ sender: UIButton) {
     
     
         timer.invalidate()
+        start.isEnabled = true
         self.seconds = 0    //just reset timer to zero
         Timepresent.text = timeString(time: TimeInterval(seconds))
         isTimerRunning = false

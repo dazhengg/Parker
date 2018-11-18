@@ -13,6 +13,7 @@ import UserNotifications
 class CountdownTimerViewController: UIViewController{
    
     
+    @IBOutlet weak var start: UIButton!
     @IBOutlet weak var timershowing: UILabel!
     
     @IBOutlet weak var picker: UIPickerView!
@@ -59,6 +60,7 @@ class CountdownTimerViewController: UIViewController{
     
     if self.resumeTapped == false {
             timer.invalidate()
+            start.isEnabled = false
             self.resumeTapped = true
         } else {
             runTimer()
@@ -71,6 +73,7 @@ class CountdownTimerViewController: UIViewController{
     
     
         timer.invalidate()
+        start.isEnabled = true
         self.totalseconds = 0    //just reset timer to zero
         timershowing.text = timeString(time: TimeInterval(totalseconds))
         isTimerRunning = false
