@@ -23,6 +23,16 @@ class TimerViewController: UIViewController{
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
     var resumeTapped = false
+    var calendar = Calendar.current
+    lazy var currentDate = calendar.startOfDay(for: Date())
+    lazy var endDate = calendar.startOfDay(for: Date()+1)
+    
+    let unit:Set<Calendar.Component> = [.day,.hour,.minute,.second]
+    lazy var commponent:DateComponents = calendar.dateComponents(unit, from: currentDate, to: endDate)
+    lazy var secondStr = commponent.second
+    lazy var minitStr = commponent.minute
+    lazy var hourStr = commponent.hour
+    
     
     lazy var secondHandView: UIView = {
         let secondHandView = UIView()
@@ -67,10 +77,14 @@ class TimerViewController: UIViewController{
         minuteHandView.frame = CGRect(x: (UIScreen.main.bounds.width-3)/2, y: 115, width: 3, height: 60)
         self.view.addSubview(minuteHandView)
         hourHandView.frame = CGRect(x: (UIScreen.main.bounds.width-3)/2, y: 130, width: 3, height: 45)
+        
         self.view.addSubview(hourHandView)
-        let link = CADisplayLink(target: self, selector: #selector(TimerViewController.clockRunning))
-        link.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
+        
+       
+        /*let link = CADisplayLink(target: self, selector: #selector(TimerViewController.clockRunning))
+        link.add(to: RunLoop.main, forMode: RunLoop.Mode.default)*/
         //link.add(to: RunLoop.main, forMode: .RunLoop.Mode.default)
+        
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         //upSwipe.direction = .up
         self.view.addGestureRecognizer(rightSwipe)
@@ -107,23 +121,39 @@ class TimerViewController: UIViewController{
     @objc func clockRunning() {
         
         
-        //let date = Date()
+        /*//let date = Date()
         let tZone = TimeZone.current
         var calendar = Calendar.current
         
-        let currentDate = Date()
+        let currentDate = calendar.startOfDay(for: Date())
+        //let daybyoneDate = calendar.startOfDay(for: Date()+1)
         calendar.timeZone = tZone
         
-        let currentTime = calendar.dateComponents([Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second], from: currentDate)
+        let currentTime = calendar.dateComponents([Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second], from: currentDate)*/
+        
+        seconds = seconds + 1
+        secondStr = secondStr! + 1
+        if secondStr == 60 {
+            secondStr = 0
+            minitStr = minitStr! + 1
+            if minitStr == 60 {
+                minitStr = 0
+                hourStr = hourStr! + 1
+                if hourStr == 13 {
+                    hourStr = 1
+                }
+            }
+        }
+        Timepresent.text = timeString(time: TimeInterval(seconds)) //This will update the label.
         
         // calculating angular for minute, hour and second
-        let secondAngle = CGFloat ( Double(currentTime.second!) * (Double.pi * 2.0 / 60) )
+        let secondAngle = CGFloat ( Double(secondStr!) * (Double.pi * 2.0 / 60) )
         secondHandView.transform = CGAffineTransform(rotationAngle: secondAngle)
         
-        let minuteAngle = CGFloat ( Double(currentTime.minute!) * (Double.pi * 2.0 / 60) )
+        let minuteAngle = CGFloat ( Double(minitStr!) * (Double.pi * 2.0 / 60) )
         minuteHandView.transform = CGAffineTransform(rotationAngle: minuteAngle)
         
-        let hourAngle = CGFloat ( Double(currentTime.hour!) * (Double.pi * 2.0 / 12) )
+        let hourAngle = CGFloat ( Double(hourStr!) * (Double.pi * 2.0 / 12) )
         hourHandView.transform = CGAffineTransform(rotationAngle: hourAngle)
     }
     
@@ -134,6 +164,9 @@ class TimerViewController: UIViewController{
     
     if isTimerRunning == false {
             runTimer()
+        isTimerRunning = true
+    
+        
         }
     }
     
@@ -143,10 +176,12 @@ class TimerViewController: UIViewController{
     if self.resumeTapped == false {
             timer.invalidate()
             start.isEnabled = false
+        
             self.resumeTapped = true
         } else {
-            runTimer()
             self.resumeTapped = false
+            runTimer()
+        
         }
         
     }
@@ -157,18 +192,27 @@ class TimerViewController: UIViewController{
         timer.invalidate()
         start.isEnabled = true
         self.seconds = 0    //just reset timer to zero
-        Timepresent.text = timeString(time: TimeInterval(seconds))
+        secondStr = 0
+        minitStr = 0
+        hourStr = 0
+        //Timepresent.text = timeString(time: TimeInterval(seconds))
         isTimerRunning = false
     }
     func runTimer() {
+        if isTimerRunning == false {
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(TimerViewController.updateTimer)), userInfo: nil, repeats: true)
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimerViewController.clockRunning), userInfo: nil, repeats: true)
+        //RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
+            self.resumeTapped = false
+    
         isTimerRunning = true
+        }
     }
-    @objc func updateTimer() {
+    /*@objc func updateTimer() {
         seconds += 1     //This will decrement(count down)the seconds.
         Timepresent.text = timeString(time: TimeInterval(seconds)) //This will update the label.
-    }
+    }*/
     func timeString(time:TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
