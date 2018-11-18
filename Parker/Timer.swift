@@ -54,18 +54,18 @@ class TimerViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         let dialLayer = CALayer()
-        dialLayer.frame = CGRect(x: (UIScreen.main.bounds.width-150)/2, y: 50, width: 150, height: 150)
+        dialLayer.frame = CGRect(x: (UIScreen.main.bounds.width-150)/2, y: 100, width: 150, height: 150)
         dialLayer.bounds = CGRect(x: 0, y: 0, width: 150, height: 150)
         //dialLayer.position = self.view.center
         dialLayer.contents = UIImage(named: "clock")?.cgImage
         
         
         view.layer.addSublayer(dialLayer)
-        secondHandView.frame = CGRect(x: (UIScreen.main.bounds.width-1)/2, y: 65, width: 1, height: 60)
+        secondHandView.frame = CGRect(x: (UIScreen.main.bounds.width-1)/2, y: 115, width: 1, height: 60)
         self.view.addSubview(secondHandView)
-        minuteHandView.frame = CGRect(x: (UIScreen.main.bounds.width-3)/2, y: 65, width: 3, height: 60)
+        minuteHandView.frame = CGRect(x: (UIScreen.main.bounds.width-3)/2, y: 115, width: 3, height: 60)
         self.view.addSubview(minuteHandView)
-        hourHandView.frame = CGRect(x: (UIScreen.main.bounds.width-3)/2, y: 80, width: 3, height: 45)
+        hourHandView.frame = CGRect(x: (UIScreen.main.bounds.width-3)/2, y: 130, width: 3, height: 45)
         self.view.addSubview(hourHandView)
         let link = CADisplayLink(target: self, selector: #selector(TimerViewController.clockRunning))
         link.add(to: RunLoop.main, forMode: RunLoop.Mode.default)
