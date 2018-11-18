@@ -22,7 +22,13 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <navigationItem title="Title" id="a1g-Ke-5zK"/>
+                                    <navigationItem title="Title" id="a1g-Ke-5zK">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="zm4-C3-U1H">
+                                            <connections>
+                                                <action selector="GoBackToMapVC:" destination="jrd-2q-ED6" id="Xzn-PB-JzN"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -34,10 +40,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="145-I4-g4j"/>
                     </view>
+                    <connections>
+                        <outlet property="BarButtonItem" destination="zm4-C3-U1H" id="kox-AQ-j9K"/>
+                        <outlet property="NavBar" destination="a1g-Ke-5zK" id="YoN-hB-csa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="on6-mQ-5jx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="513" y="-536"/>
+            <point key="canvasLocation" x="919" y="-538"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -59,6 +69,16 @@
                                 <rect key="frame" x="212" y="503" width="163" height="164"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="find_car"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhk-Zv-f72">
+                                <rect key="frame" x="287" y="56" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="jrd-2q-ED6" kind="popoverPresentation" popoverAnchorView="fhk-Zv-f72" id="r5D-ju-8gl">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

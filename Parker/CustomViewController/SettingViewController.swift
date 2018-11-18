@@ -10,9 +10,16 @@ import UIKit
 
 class SettingViewController: UIViewController {
 
+    @IBOutlet weak var NavBar: UINavigationItem!
+    @IBOutlet weak var BarButtonItem: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NavBar.title = "Setting"
+        BarButtonItem.title = "Back"
     }
-
+    
+    @IBAction func GoBackToMapVC(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
