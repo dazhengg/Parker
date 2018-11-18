@@ -75,7 +75,7 @@ class MapViewController: UIViewController , CLLocationManagerDelegate{
 			print("locations = \(locValue.latitude) \(locValue.longitude)")
 			let userLocation = locations.last! as CLLocation
 			let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
-			self.map.setRegion(viewRegion, animated: true)
+			self.map.setRegion(viewRegion, animated: false)
 		
 
 	}
