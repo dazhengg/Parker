@@ -30,9 +30,6 @@ class MapViewController: UIViewController , CLLocationManagerDelegate{
         leftSwipe.direction = .left
         self.view.addGestureRecognizer(leftSwipe)
 
-					locationManager.delegate = self
-					locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-					locationManager.startUpdatingLocation()
 			}
 
 	
