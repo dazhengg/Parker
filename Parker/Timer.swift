@@ -176,11 +176,13 @@ class TimerViewController: UIViewController{
     if self.resumeTapped == false {
             timer.invalidate()
             start.isEnabled = false
+            isTimerRunning = false
         
             self.resumeTapped = true
         } else {
             self.resumeTapped = false
             runTimer()
+            isTimerRunning = true
         
         }
         
