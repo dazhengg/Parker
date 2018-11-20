@@ -31,11 +31,11 @@ https://github.com/ECS189E/Parker/commit/b30f70c37c100d6fed8c10b79f631ce2cfc02b9
 https://github.com/ECS189E/Parker/commit/5fc5db80fe3b5234dcd3712e41514b4720a944e8
 Future plan: try to add more new ideas to the project.
 
-> Zekai Zhao
-> > 1. contributed to main map VC, link https://github.com/ECS189E/Parker/commit/1a13f03a618a91334d375d91aa86de9d2a4b1cea
+> Zekai Zhao 
+> > 1. contributed to main map VC https://github.com/ECS189E/Parker/blob/master/Parker/CustomViewController/MapViewController.swift
 > > 2. created icons for map VC
 > > 3. make though the location service
-> > 4. enable user to drop bin at the current location
+> > 4. enable user to drop bin at the current location , link https://github.com/ECS189E/Parker/commit/1a13f03a618a91334d375d91aa86de9d2a4b1cea
 > > 5. going to handle map navigation function
 
 # Trello Board Link:  
