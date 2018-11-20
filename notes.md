@@ -14,6 +14,12 @@ Features included:
 > > 4. Wrote the ReadMe.md
 Future plan: Try to finish the info vc. 
 
+> David Zheng 
+> > 1. Contributed in the outline of how to handle the Parking (i.e Viewcontrollers that will be necessary or not) 
+> > 2. Handling storing info (picture of car, location, map ) 
+> > 3. Will handle the UI design of overall outlook of launch screen and potential UI elements. 
+> > 4. Handling to show other users of the app if a spot is being taken or not. 
+
 # Trello Board Link:  
 https://trello.com/b/522G6mOF/parker
 
