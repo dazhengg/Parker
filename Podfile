@@ -5,5 +5,6 @@ target 'Parker' do
   use_frameworks!
 
 pod 'SVProgressHUD'
+pod 'Firebase/Auth'
 
 end

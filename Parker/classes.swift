@@ -12,7 +12,7 @@ import Foundation
 // Getting: phoneNumber = Storage.phoneNumberInE164
 // Setting: Storage.phoneNumberInE164 = phoneNumber
 
-struct Storage {
+struct Location {
     static var latitude: Double? {
         get {
             return UserDefaults.standard.double(forKey: "latitude")
@@ -35,3 +35,4 @@ struct Storage {
         }
     }
 }
+
