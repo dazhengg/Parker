@@ -12,6 +12,7 @@ Features included:
 > > 2. Set up Trello Board
 > > 3. Wrote the setting VC, link: https://github.com/ECS189E/Parker/commit/3bec6ece10ae750d076f890086852bf18ea00ebf
 > > 4. Wrote the ReadMe.md
+> > 5. Created storage for storing location. https://github.com/ECS189E/Parker/commit/3e44f743ab6b89218a3fdf3e03e332a3d52b8cc7
 Future plan: Try to finish the info vc. 
 
 > David Zheng 
@@ -26,9 +27,7 @@ https://github.com/ECS189E/Parker/commit/613ef9d2a271409fbed70dd8bb518a4cea7c8e0
 https://github.com/ECS189E/Parker/commit/b30f70c37c100d6fed8c10b79f631ce2cfc02b91(this one is the oldest version)
 > > 2. wrote the Count down Timer VC which is helpful for people who parks in the meter to know how much time left. Set a notification when only 15min left
 https://github.com/ECS189E/Parker/commit/b30f70c37c100d6fed8c10b79f631ce2cfc02b91
-> > 3. wrote part of the Camera VC which can take photo and save in the album( in the future, we may need to use the photo to recognize the address) 
-https://github.com/ECS189E/Parker/commit/2784a3cde8f023c4b4334068851ca577c373fa4d
-> > 4. added the swipegesture transition to all VCs, for other VCs except the camera, swipe left goes to the next VC, swipe right goes back. For Camera VC, swipe up, open the Camera VC, swipe down, close it.
+> > 3. added the swipegesture transition to all VCs, for other VCs except the camera, swipe left goes to the next VC, swipe right goes back. For Camera VC, swipe up, open the Camera VC, swipe down, close it.
 https://github.com/ECS189E/Parker/commit/5fc5db80fe3b5234dcd3712e41514b4720a944e8
 Future plan: try to add more new ideas to the project.
 
