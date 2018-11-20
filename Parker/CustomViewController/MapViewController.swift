@@ -19,10 +19,18 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 			if CLLocationManager.locationServicesEnabled() {
 					locationManager.delegate = self
 					locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-					locationManager.startUpdatingLocation()
-					let userLocation = locationManager.location! as CLLocation
-					let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
-					self.map.setRegion(viewRegion, animated: false)
+				
+					// location queue to aviod use location before getting location
+					let locationUpdateQueue = DispatchQueue(label: "location update queue")
+					locationUpdateQueue.async{
+						self.locationManager.startUpdatingLocation()
+					}
+					locationUpdateQueue.async{
+						let userLocation = self.locationManager.location! as CLLocation
+						let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
+						self.map.setRegion(viewRegion, animated: false)
+					}
+				
 			}
 			
 					//add transition using swipegesture

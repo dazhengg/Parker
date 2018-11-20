@@ -20,6 +20,11 @@ Future plan: Try to finish the info vc.
 > > 3. Will handle the UI design of overall outlook of launch screen and potential UI elements. 
 > > 4. Handling to show other users of the app if a spot is being taken or not. 
 
+> Zekai Zhao
+> > 1. contributed to main map VC, link https://github.com/ECS189E/Parker/commit/1a13f03a618a91334d375d91aa86de9d2a4b1cea
+> > 2. created icons for map VC
+> > 3. 
+
 # Trello Board Link:  
 https://trello.com/b/522G6mOF/parker
 
