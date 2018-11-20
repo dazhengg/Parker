@@ -3,34 +3,34 @@ import MapKit
 
 class MapViewController: UIViewController , CLLocationManagerDelegate{
 	
-	let newPin = MKPointAnnotation()
-	var locationManager = CLLocationManager()
-	var locatButtonPressed = false
+		let newPin = MKPointAnnotation()
+		var locationManager = CLLocationManager()
+		var locatButtonPressed = false
 	
-	@IBOutlet weak var map: MKMapView!
+		@IBOutlet weak var map: MKMapView!
 	
-	override func viewDidLoad() {
-			super.viewDidLoad()
-			// Do any additional setup after loading the view, typically from a nib.
-			self.locationManager.requestWhenInUseAuthorization()
-		
-			if CLLocationManager.locationServicesEnabled() {
+		override func viewDidLoad() {
+				super.viewDidLoad()
+				// Do any additional setup after loading the view, typically from a nib.
 			
-
-			locationManager.delegate = self
-			locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-			locationManager.startUpdatingLocation()
-		}
-        //add transition using swipegesture
-        let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        upSwipe.direction = .up
-        self.view.addGestureRecognizer(upSwipe)
-        
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        leftSwipe.direction = .left
-        self.view.addGestureRecognizer(leftSwipe)
-
+			
+			self.locationManager.requestWhenInUseAuthorization()
+			if CLLocationManager.locationServicesEnabled() {
+					locationManager.delegate = self
+					locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+					locationManager.startUpdatingLocation()
 			}
+			
+					//add transition using swipegesture
+			let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+			upSwipe.direction = .up
+			self.view.addGestureRecognizer(upSwipe)
+			
+			let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+			leftSwipe.direction = .left
+					self.view.addGestureRecognizer(leftSwipe)
+
+		}
 
 	
     @objc func handleSwipe(sender: UISwipeGestureRecognizer){
@@ -49,9 +49,6 @@ class MapViewController: UIViewController , CLLocationManagerDelegate{
                 break
                 
             }
-            
-           
-            
         }
     }
     
@@ -59,10 +56,10 @@ class MapViewController: UIViewController , CLLocationManagerDelegate{
 
 
 	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
+		override func didReceiveMemoryWarning() {
+				super.didReceiveMemoryWarning()
+				// Dispose of any resources that can be recreated.
+		}
 	
 	
 	
@@ -73,17 +70,15 @@ class MapViewController: UIViewController , CLLocationManagerDelegate{
 			let userLocation = locations.last! as CLLocation
 			let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
 			self.map.setRegion(viewRegion, animated: false)
-		
-
-	}
-	@IBAction func locateButton(_ sender: Any) {
-		locatButtonPressed = !locatButtonPressed
-		if(locatButtonPressed){
-			let userLocation = locationManager.location! as CLLocation
-			newPin.coordinate = userLocation.coordinate
-			map.addAnnotation(newPin)
-		}
-		
 	}
 	
+	
+		@IBAction func locateButton(_ sender: Any) {
+				locatButtonPressed = !locatButtonPressed
+				if(locatButtonPressed){
+						let userLocation = locationManager.location! as CLLocation
+						newPin.coordinate = userLocation.coordinate
+						map.addAnnotation(newPin)
+				}
+		}
 }
