@@ -237,16 +237,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QA7-A2-JuB">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhk-Zv-f72">
-                                <rect key="frame" x="287" y="56" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="jrd-2q-ED6" kind="popoverPresentation" popoverAnchorView="fhk-Zv-f72" id="r5D-ju-8gl">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fco-zw-MNA">
                                 <rect key="frame" x="0.0" y="696" width="414" height="166"/>
                                 <subviews>
@@ -274,6 +264,16 @@
                                     <constraint firstItem="BUh-JY-FRU" firstAttribute="top" secondItem="Fco-zw-MNA" secondAttribute="top" constant="42" id="uEx-GY-qGZ"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhk-Zv-f72">
+                                <rect key="frame" x="348" y="44" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="jrd-2q-ED6" kind="popoverPresentation" popoverAnchorView="fhk-Zv-f72" id="r5D-ju-8gl">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -352,7 +352,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jjd-aO-dNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956.52173913043487" y="143.97321428571428"/>
+            <point key="canvasLocation" x="961" y="133"/>
         </scene>
     </scenes>
     <resources>
