@@ -19,6 +19,9 @@ class MapViewController: UIViewController , CLLocationManagerDelegate{
 					locationManager.delegate = self
 					locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 					locationManager.startUpdatingLocation()
+					let userLocation = locationManager.location! as CLLocation
+					let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
+					self.map.setRegion(viewRegion, animated: false)
 			}
 			
 					//add transition using swipegesture
@@ -63,13 +66,14 @@ class MapViewController: UIViewController , CLLocationManagerDelegate{
 	
 	
 	
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations
+											 locations: [CLLocation]) {
 		
 			let locValue:CLLocationCoordinate2D = manager.location!.coordinate
 			print("locations = \(locValue.latitude) \(locValue.longitude)")
-			let userLocation = locations.last! as CLLocation
-			let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
-			self.map.setRegion(viewRegion, animated: false)
+		//	let userLocation = locations.last! as CLLocation
+		//	let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
+		//	self.map.setRegion(viewRegion, animated: false)
 	}
 	
 	
