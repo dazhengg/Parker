@@ -7,6 +7,7 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 		let currentLocationPin = MKPointAnnotation()
 		var locationManager = CLLocationManager()
 		var locatButtonPressed = false
+		var loginMap = 0
 	
 		@IBOutlet weak var map: MKMapView!
 	
@@ -14,23 +15,12 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 				super.viewDidLoad()
 				// Do any additional setup after loading the view, typically from a nib.
 			
-			
 			self.locationManager.requestWhenInUseAuthorization()
+			
 			if CLLocationManager.locationServicesEnabled() {
-					locationManager.delegate = self
-					locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-				
-					// location queue to aviod use location before getting location
-					let locationUpdateQueue = DispatchQueue(label: "location update queue")
-					locationUpdateQueue.async{
-						self.locationManager.startUpdatingLocation()
-					}
-					locationUpdateQueue.async{
-						let userLocation = self.locationManager.location! as CLLocation
-						let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
-						self.map.setRegion(viewRegion, animated: false)
-					}
-				
+							self.locationManager.delegate = self
+							self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+							self.locationManager.startUpdatingLocation()
 			}
 			
 					//add transition using swipegesture
@@ -41,8 +31,14 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 			let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
 			leftSwipe.direction = .left
 					self.view.addGestureRecognizer(leftSwipe)
-
+			
 		}
+	
+	func initCurrentLocation(){
+		let userLocation = self.locationManager.location! as CLLocation
+		let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
+		self.map.setRegion(viewRegion, animated: false)
+	}
 
 	
     @objc func handleSwipe(sender: UISwipeGestureRecognizer){
@@ -85,6 +81,11 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 		//	self.map.setRegion(viewRegion, animated: false)
 		
 			// Drop a pin at user's Current Location
+		
+			if(loginMap == 0){
+				initCurrentLocation()
+				loginMap = 1
+			}
 		
 			currentLocationPin.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
 			currentLocationPin.title = "Current location"
