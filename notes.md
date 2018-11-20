@@ -35,7 +35,9 @@ Future plan: try to add more new ideas to the project.
 > Zekai Zhao
 > > 1. contributed to main map VC, link https://github.com/ECS189E/Parker/commit/1a13f03a618a91334d375d91aa86de9d2a4b1cea
 > > 2. created icons for map VC
-> > 3. 
+> > 3. make though the location service
+> > 4. enable user to drop bin at the current location
+> > 5. going to handle map navigation function
 
 # Trello Board Link:  
 https://trello.com/b/522G6mOF/parker
