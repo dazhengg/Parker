@@ -6,5 +6,6 @@ target 'Parker' do
 
 pod 'SVProgressHUD'
 pod 'Firebase/Auth'
+pod 'GooglePlaces'
 
 end

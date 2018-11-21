@@ -1,20 +1,26 @@
 import UIKit
 import MapKit
+import GooglePlaces
 
-class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDelegate{
-	
+class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDelegate,
+UIPickerViewDelegate, UIPickerViewDataSource{
+
 		let newPin = MKPointAnnotation()
 		let currentLocationPin = MKPointAnnotation()
 		var locationManager = CLLocationManager()
 		var locatButtonPressed = false
 		var loginMap = 0
+        var levelTextField: UITextField?
+        let numCols = 1
+        var levelArray = [-1,0,1,2,3,4,5,6,7,8]
+        //var confirmedLevel = 0
 	
 		@IBOutlet weak var map: MKMapView!
 	
 		override func viewDidLoad() {
 				super.viewDidLoad()
 				// Do any additional setup after loading the view, typically from a nib.
-			
+
 			self.locationManager.requestWhenInUseAuthorization()
 			
 			if CLLocationManager.locationServicesEnabled() {
@@ -115,6 +121,7 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
             map.addAnnotation(newPin)
             Location.latitude = userLocation.coordinate.latitude
             Location.longitude = userLocation.coordinate.longitude
+            /*
             let reverseLocationManager = CLGeocoder()
             reverseLocationManager.reverseGeocodeLocation(userLocation, completionHandler: {(placemarks, error) -> Void in
                 print(userLocation)
@@ -141,8 +148,91 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
                 else {
                     print("Problem with the data received from geocoder")
                 }
-            })
+            })*/
             
+
+            
+            let placesClient = GMSPlacesClient.shared()
+            placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+                if let error = error {
+                    print("Pick Place error: \(error.localizedDescription)")
+                    return
+                }
+                
+                if let placeLikelihoodList = placeLikelihoodList {
+                    for likelihood in placeLikelihoodList.likelihoods.prefix(5) {
+                        let place = likelihood.place
+                        //if place.name.contains("Sorrento") {
+                        if place.name.contains("Parking Structure") {
+                            let alertController = UIAlertController(title: "We detected you are in a parking structure", message: nil, preferredStyle: .alert)
+                            alertController.addTextField(configurationHandler: self.levelTextFieldConfig)
+                            let actionConfirm = UIAlertAction(title: "Confirm",style: .default, handler: { (action) in
+                                Storage.level = Int(self.levelTextField?.text ?? "0")
+                            })
+                            let actionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                            alertController.addAction(actionCancel)
+                            alertController.addAction(actionConfirm)
+                            self.present(alertController, animated: true, completion: nil)
+                            break
+                        }
+                    }
+                }
+            })
         }
     }
+    func levelTextFieldConfig(textField : UITextField) {
+        levelTextField = textField
+        levelTextField?.placeholder = "Please select the level you parked"
+        createPicker()
+        createToolBar()
+    }
+    
+    func createPicker() {
+        let picker = UIPickerView()
+        picker.delegate = self
+        levelTextField?.inputView = picker
+    }
+
+    func createToolBar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let done = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector (dismissKeyboard))
+        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector (clearInput))
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancel, space, done], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        levelTextField?.inputAccessoryView = toolBar
+    }
+    
+    // clear the input and dismiss the keyboard when press 'cancel' on the picker
+    @objc func clearInput() {
+        levelTextField?.text = ""
+        levelTextField?.endEditing(true)
+        
+    }
+    
+    // dismiss the keyboard when press 'ok' on the picker
+    @objc func dismissKeyboard() {
+        levelTextField?.endEditing(true)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return numCols
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return levelArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(levelArray[row])
+    }
+    
+    // the content that the user finally chooses
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        levelTextField?.text = String(levelArray[row])
+        //confirmedLevel = levelArray[row]
+    }
+    
+    
 }

@@ -36,3 +36,16 @@ struct Location {
     }
 }
 
+struct Storage {
+    static var level: Int? {
+        get {
+            return UserDefaults.standard.integer(forKey: "level")
+        }
+        
+        set(latitude) {
+            UserDefaults.standard.set(level, forKey: "level")
+            print("Saving level as \(UserDefaults.standard.synchronize())")
+        }
+    }
+}
+

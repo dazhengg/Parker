@@ -11,7 +11,6 @@
 		045A1CC221A0EF89004E46C7 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */; };
 		045A1CC421A1020E004E46C7 /* Takepicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A1CC321A1020E004E46C7 /* Takepicture.swift */; };
 		6A481DB521A39A7B00F6A942 /* classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A481DB421A39A7B00F6A942 /* classes.swift */; };
-		6A481DB721A4A09F00F6A942 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A481DB621A4A09F00F6A942 /* LoginViewController.swift */; };
 		6A9F0DFB21A0E0CB009436A1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9F0DFA21A0E0CB009436A1 /* SettingViewController.swift */; };
 		71988D1EF226E661E5F4C909 /* Pods_Parker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980037EFB8C2E6EE2C701058 /* Pods_Parker.framework */; };
 		BF247D6C219645CA00948E85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF247D6B219645CA00948E85 /* AppDelegate.swift */; };
@@ -26,7 +25,6 @@
 		045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 		045A1CC321A1020E004E46C7 /* Takepicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Takepicture.swift; sourceTree = "<group>"; };
 		6A481DB421A39A7B00F6A942 /* classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = classes.swift; sourceTree = "<group>"; };
-		6A481DB621A4A09F00F6A942 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6A9F0DFA21A0E0CB009436A1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		92048ACF94127D0BF6CC7893 /* Pods-Parker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Parker/Pods-Parker.debug.xcconfig"; sourceTree = "<group>"; };
 		980037EFB8C2E6EE2C701058 /* Pods_Parker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +64,6 @@
 			children = (
 				BF247D6D219645CA00948E85 /* MapViewController.swift */,
 				6A9F0DFA21A0E0CB009436A1 /* SettingViewController.swift */,
-				6A481DB621A4A09F00F6A942 /* LoginViewController.swift */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -126,6 +123,7 @@
 				BF247D65219645CA00948E85 /* Frameworks */,
 				BF247D66219645CA00948E85 /* Resources */,
 				C2650CE5B3866EA3E36EA6D1 /* [CP] Embed Pods Frameworks */,
+				77A0A23F9FDAD13640A394D8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,6 +203,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		77A0A23F9FDAD13640A394D8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Parker/Pods-Parker-resources.sh",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Parker/Pods-Parker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C2650CE5B3866EA3E36EA6D1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,7 +262,6 @@
 				045A1CC221A0EF89004E46C7 /* CountdownTimer.swift in Sources */,
 				BF247D6E219645CA00948E85 /* MapViewController.swift in Sources */,
 				BF247D6C219645CA00948E85 /* AppDelegate.swift in Sources */,
-				6A481DB721A4A09F00F6A942 /* LoginViewController.swift in Sources */,
 				045A1CC421A1020E004E46C7 /* Takepicture.swift in Sources */,
 				6A9F0DFB21A0E0CB009436A1 /* SettingViewController.swift in Sources */,
 				045A1CC021A0EF6A004E46C7 /* Timer.swift in Sources */,

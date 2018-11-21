@@ -829,6 +829,14 @@ Copyright 2018 Google
    limitations under the License.
 
 
+## GoogleMaps
+
+Copyright 2018 Google
+
+## GooglePlaces
+
+Copyright 2018 Google
+
 ## GoogleUtilities
 
 
