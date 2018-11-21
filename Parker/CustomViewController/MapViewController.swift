@@ -107,12 +107,42 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 
 	
 	
-		@IBAction func locateButton(_ sender: Any) {
-				locatButtonPressed = !locatButtonPressed
-				if(locatButtonPressed){
-						let userLocation = locationManager.location! as CLLocation
-						newPin.coordinate = userLocation.coordinate
-						map.addAnnotation(newPin)
-				}
-		}
+    @IBAction func locateButton(_ sender: Any) {
+        locatButtonPressed = !locatButtonPressed
+        if(locatButtonPressed){
+            let userLocation = locationManager.location! as CLLocation
+            newPin.coordinate = userLocation.coordinate
+            map.addAnnotation(newPin)
+            Location.latitude = userLocation.coordinate.latitude
+            Location.longitude = userLocation.coordinate.longitude
+            let reverseLocationManager = CLGeocoder()
+            reverseLocationManager.reverseGeocodeLocation(userLocation, completionHandler: {(placemarks, error) -> Void in
+                print(userLocation)
+                
+                
+                if error != nil {
+                    print("Reverse geocoder failed with error" + error!.localizedDescription)
+                    return
+                }
+                
+                if placemarks != nil {
+                    guard let locationArray = placemarks else {
+                        print("Fatal error occured")
+                        return
+                    }
+                    for pm in locationArray {
+                        print("pm name is \(pm.name ?? "pm name not available")")
+                        print("pm subLocality name is \(pm.subLocality ?? "subLocality name not available")")
+                        print("pm subThoroughfare name is \(pm.subThoroughfare ?? "subThoroughfare name not available")")
+                    //let pm = locationArray[0]
+                    }
+                    
+                }
+                else {
+                    print("Problem with the data received from geocoder")
+                }
+            })
+            
+        }
+    }
 }
