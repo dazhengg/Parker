@@ -77,21 +77,20 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 			let locValue:CLLocationCoordinate2D = manager.location!.coordinate
 			print("locations = \(locValue.latitude) \(locValue.longitude)")
 			let userLocation = locations.last! as CLLocation
-		//	let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
-		//	self.map.setRegion(viewRegion, animated: false)
-		
+
 			// Drop a pin at user's Current Location
+			let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+		
+			map.showsUserLocation = true
+		
 			if(loginMap == 0){
-				initCurrentLocation()
+				self.map.setRegion(viewRegion, animated: false)
 				loginMap = 1
 			}
 		
-			currentLocationPin.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-			currentLocationPin.title = "Current location"
-			currentLocationPin.imageName = "current_location_circle"
-			self.map.addAnnotation(currentLocationPin)
+
 			self.map.delegate = self
-	}
+ }
 	
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 				if !(annotation is CustomPointAnnotation) {
