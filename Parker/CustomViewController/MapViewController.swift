@@ -3,8 +3,8 @@ import MapKit
 
 class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDelegate{
 	
-		let newPin = MKPointAnnotation()
-		let currentLocationPin = MKPointAnnotation()
+		let carLocationPin = CustomPointAnnotation()
+		let currentLocationPin = CustomPointAnnotation()
 		var locationManager = CLLocationManager()
 		var locatButtonPressed = false
 		var loginMap = 0
@@ -81,7 +81,6 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 		//	self.map.setRegion(viewRegion, animated: false)
 		
 			// Drop a pin at user's Current Location
-		
 			if(loginMap == 0){
 				initCurrentLocation()
 				loginMap = 1
@@ -89,20 +88,34 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
 		
 			currentLocationPin.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
 			currentLocationPin.title = "Current location"
+			currentLocationPin.imageName = "current_location_circle"
 			self.map.addAnnotation(currentLocationPin)
 			self.map.delegate = self
 	}
 	
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-		if annotation is MKUserLocation{
-			return nil
-		}
+				if !(annotation is CustomPointAnnotation) {
+					return nil
+				}
 		
-		let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "customannotation")
-		annotationView.image = UIImage(named: "round_near_me_black_24dp")
-		annotationView.canShowCallout = true
-	
-		return annotationView
+				let reuseId = "test"
+		
+				var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+				if anView == nil {
+					anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+					anView?.canShowCallout = true
+				}
+				else {
+					anView?.annotation = annotation
+				}
+		
+				//Set annotation-specific properties **AFTER**
+				//the view is dequeued or created...
+		
+			let cpa = annotation as! CustomPointAnnotation
+			anView?.image = UIImage(named:cpa.imageName)
+		
+				return anView
 	}
 
 	
@@ -111,8 +124,9 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
         locatButtonPressed = !locatButtonPressed
         if(locatButtonPressed){
             let userLocation = locationManager.location! as CLLocation
-            newPin.coordinate = userLocation.coordinate
-            map.addAnnotation(newPin)
+            carLocationPin.coordinate = userLocation.coordinate
+						carLocationPin.imageName = "round_directions_car_black_24dp"
+            map.addAnnotation(carLocationPin)
             Location.latitude = userLocation.coordinate.latitude
             Location.longitude = userLocation.coordinate.longitude
             let reverseLocationManager = CLGeocoder()
@@ -145,4 +159,9 @@ class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapView
             
         }
     }
+}
+
+
+class CustomPointAnnotation: MKPointAnnotation {
+	var imageName: String!
 }
