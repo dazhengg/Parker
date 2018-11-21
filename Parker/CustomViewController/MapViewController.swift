@@ -2,11 +2,14 @@ import UIKit
 import MapKit
 import GooglePlaces
 
+
 class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDelegate,
 UIPickerViewDelegate, UIPickerViewDataSource{
 
-		let newPin = MKPointAnnotation()
-		let currentLocationPin = MKPointAnnotation()
+    
+
+		let carLocationPin = CustomPointAnnotation()
+		let currentLocationPin = CustomPointAnnotation()
 		var locationManager = CLLocationManager()
 		var locatButtonPressed = false
 		var loginMap = 0
@@ -83,32 +86,44 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			let locValue:CLLocationCoordinate2D = manager.location!.coordinate
 			print("locations = \(locValue.latitude) \(locValue.longitude)")
 			let userLocation = locations.last! as CLLocation
-		//	let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
-		//	self.map.setRegion(viewRegion, animated: false)
-		
+
 			// Drop a pin at user's Current Location
+			let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+		
+			map.showsUserLocation = true
 		
 			if(loginMap == 0){
-				initCurrentLocation()
+				self.map.setRegion(viewRegion, animated: false)
 				loginMap = 1
 			}
 		
-			currentLocationPin.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-			currentLocationPin.title = "Current location"
-			self.map.addAnnotation(currentLocationPin)
+
 			self.map.delegate = self
-	}
+ }
 	
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-		if annotation is MKUserLocation{
-			return nil
-		}
+				if !(annotation is CustomPointAnnotation) {
+					return nil
+				}
 		
-		let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "customannotation")
-		annotationView.image = UIImage(named: "round_near_me_black_24dp")
-		annotationView.canShowCallout = true
-	
-		return annotationView
+				let reuseId = "test"
+		
+				var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+				if anView == nil {
+					anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+					anView?.canShowCallout = true
+				}
+				else {
+					anView?.annotation = annotation
+				}
+		
+				//Set annotation-specific properties **AFTER**
+				//the view is dequeued or created...
+		
+			let cpa = annotation as! CustomPointAnnotation
+			anView?.image = UIImage(named:cpa.imageName)
+		
+				return anView
 	}
 
 	
@@ -117,8 +132,9 @@ UIPickerViewDelegate, UIPickerViewDataSource{
         locatButtonPressed = !locatButtonPressed
         if(locatButtonPressed){
             let userLocation = locationManager.location! as CLLocation
-            newPin.coordinate = userLocation.coordinate
-            map.addAnnotation(newPin)
+            carLocationPin.coordinate = userLocation.coordinate
+						carLocationPin.imageName = "round_directions_car_black_24dp"
+            map.addAnnotation(carLocationPin)
             Location.latitude = userLocation.coordinate.latitude
             Location.longitude = userLocation.coordinate.longitude
             /*
@@ -235,4 +251,9 @@ UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
     
+}
+
+
+class CustomPointAnnotation: MKPointAnnotation {
+	var imageName: String!
 }
