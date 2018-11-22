@@ -263,7 +263,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QA7-A2-JuB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="697"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fco-zw-MNA">
                                 <rect key="frame" x="0.0" y="696" width="414" height="166"/>
@@ -278,9 +278,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXk-ud-84H">
                                         <rect key="frame" x="247" y="42" width="149" height="119"/>
                                         <state key="normal" title="Button" image="find_car"/>
-                                        <connections>
-                                            <action selector="getDirection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s48-f9-Hoj"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -316,6 +313,18 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Eh-4G-kU1">
+                                <rect key="frame" x="8" y="651" width="34" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="ctq-b5-edp"/>
+                                    <constraint firstAttribute="height" constant="37" id="m1H-pb-HtB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" image="round_near_me_black_24dp"/>
+                                <connections>
+                                    <action selector="nearMeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KUO-01-j6N"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -324,12 +333,14 @@
                             <constraint firstItem="Fco-zw-MNA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8Mx-Sz-Lc3"/>
                             <constraint firstItem="kTf-4I-olA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JGC-kh-maa"/>
                             <constraint firstItem="kTf-4I-olA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.25" id="MPI-Yf-56f"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QA7-A2-JuB" secondAttribute="bottom" constant="139" id="MWk-6w-7M2"/>
-                            <constraint firstItem="Fco-zw-MNA" firstAttribute="top" secondItem="QA7-A2-JuB" secondAttribute="bottom" constant="-27" id="OWD-UW-M9K"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QA7-A2-JuB" secondAttribute="bottom" constant="165" id="MWk-6w-7M2"/>
+                            <constraint firstItem="Fco-zw-MNA" firstAttribute="top" secondItem="QA7-A2-JuB" secondAttribute="bottom" constant="-1" id="OWD-UW-M9K"/>
                             <constraint firstItem="fhk-Zv-f72" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QR3-cq-LYX"/>
                             <constraint firstItem="QA7-A2-JuB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="aTb-7Z-X8I"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QA7-A2-JuB" secondAttribute="trailing" id="cDh-Dh-bxO"/>
                             <constraint firstItem="fhk-Zv-f72" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1.75" id="d04-hT-Dym"/>
-                            <constraint firstItem="QA7-A2-JuB" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lZF-ZN-GiU"/>
+                            <constraint firstItem="1Eh-4G-kU1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="dVL-H6-jTq"/>
+                            <constraint firstItem="Fco-zw-MNA" firstAttribute="top" secondItem="1Eh-4G-kU1" secondAttribute="bottom" constant="8" id="sfF-QO-PTB"/>
                             <constraint firstItem="Fco-zw-MNA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xgs-cl-xz0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -404,5 +415,6 @@
     <resources>
         <image name="find_car" width="288" height="288"/>
         <image name="location_button" width="288" height="288"/>
+        <image name="round_near_me_black_24dp" width="48" height="48"/>
     </resources>
 </document>

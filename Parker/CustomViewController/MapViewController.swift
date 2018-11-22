@@ -39,10 +39,11 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 					carLocationPin.coordinate = userLocation.coordinate
 					carLocationPin.imageName = "round_directions_car_black_24dp"
 					map.addAnnotation(carLocationPin)
+					self.map.delegate = self
 				}
 			}
 			
-					//add transition using swipegesture
+			//add transition using swipegesture
 			let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
 			upSwipe.direction = .up
 			self.view.addGestureRecognizer(upSwipe)
@@ -127,6 +128,11 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		
 	}
 	
+	@IBAction func nearMeButton(_ sender: Any) {
+		guard let currentCoordinate = locationManager.location?.coordinate else {return}
+		let viewRegion = MKCoordinateRegion(center: currentCoordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+		self.map.setRegion(viewRegion, animated: false)
+	}
 	
     @IBAction func locateButton(_ sender: Any) {
         locatButtonPressed = !locatButtonPressed
@@ -310,7 +316,7 @@ extension MapViewController: MKMapViewDelegate{
 		if overlay is MKPolyline{
 			let renderer = MKPolylineRenderer(overlay:overlay)
 			renderer.strokeColor = .blue
-			renderer.lineWidth = 10
+			renderer.lineWidth = 5
 			return renderer
 		}
 		return MKOverlayRenderer()
