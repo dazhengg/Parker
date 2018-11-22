@@ -172,7 +172,6 @@ UIPickerViewDelegate, UIPickerViewDataSource{
                 }
             })*/
             
-
             
             let placesClient = GMSPlacesClient.shared()
             placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
@@ -185,7 +184,8 @@ UIPickerViewDelegate, UIPickerViewDataSource{
                     for likelihood in placeLikelihoodList.likelihoods.prefix(5) {
                         let place = likelihood.place
                         //if place.name.contains("Sorrento") {
-                        if place.name.contains("Parking Structure") {
+                        if place.name.contains("Parking Structure") ||
+                            place.name.contains("Garage"){
                             let alertController = UIAlertController(title: "We detected you are in a parking structure", message: nil, preferredStyle: .alert)
                             alertController.addTextField(configurationHandler: self.levelTextFieldConfig)
                             let actionConfirm = UIAlertAction(title: "Confirm",style: .default, handler: { (action) in
