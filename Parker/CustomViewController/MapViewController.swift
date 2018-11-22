@@ -3,7 +3,7 @@ import MapKit
 import GooglePlaces
 
 
-class MapViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDelegate,
+class MapViewController: UIViewController ,
 UIPickerViewDelegate, UIPickerViewDataSource{
 
     
@@ -16,20 +16,30 @@ UIPickerViewDelegate, UIPickerViewDataSource{
         var levelTextField: UITextField?
         let numCols = 1
         var levelArray = [-1,0,1,2,3,4,5,6,7,8]
-        //var confirmedLevel = 0
+		//var steps = [MKRoute.Step]()
+		//var confirmedLevel = 0
 	
 		@IBOutlet weak var map: MKMapView!
 	
 		override func viewDidLoad() {
 				super.viewDidLoad()
 				// Do any additional setup after loading the view, typically from a nib.
-
+			
 			self.locationManager.requestWhenInUseAuthorization()
 			
 			if CLLocationManager.locationServicesEnabled() {
 							self.locationManager.delegate = self
 							self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 							self.locationManager.startUpdatingLocation()
+			}
+	
+			if let carParkingLatitude = Location.latitude {
+				if let carParkingLongtitude = Location.longitude{
+					let userLocation = CLLocation(latitude: carParkingLatitude, longitude: carParkingLongtitude)
+					carLocationPin.coordinate = userLocation.coordinate
+					carLocationPin.imageName = "round_directions_car_black_24dp"
+					map.addAnnotation(carLocationPin)
+				}
 			}
 			
 					//add transition using swipegesture
@@ -43,12 +53,6 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			
 		}
 	
-	func initCurrentLocation(){
-		let userLocation = self.locationManager.location! as CLLocation
-		let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 600, longitudinalMeters: 600)
-		self.map.setRegion(viewRegion, animated: false)
-	}
-
 	
     @objc func handleSwipe(sender: UISwipeGestureRecognizer){
         if sender.state == .ended{
@@ -80,52 +84,48 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	
 	
 	
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations
-											 locations: [CLLocation]) {
-		
-			let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-			print("locations = \(locValue.latitude) \(locValue.longitude)")
-			let userLocation = locations.last! as CLLocation
 
-			// Drop a pin at user's Current Location
-			let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
-		
-			map.showsUserLocation = true
-		
-			if(loginMap == 0){
-				self.map.setRegion(viewRegion, animated: false)
-				loginMap = 1
-			}
-		
 
-			self.map.delegate = self
- }
-	
-	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-				if !(annotation is CustomPointAnnotation) {
-					return nil
-				}
+	@IBAction func getDirection(_ sender: Any) {
+		// getting the start point of navigation,
+		// which is current location
+		guard let currentLocationCoordinate = locationManager.location?.coordinate else{
+			return
+		}
+		let sourcePlacemark = MKPlacemark(coordinate: currentLocationCoordinate)
+		let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
 		
-				let reuseId = "test"
+		// getting the destination of navigation
+		// which is where user parks the car
 		
-				var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
-				if anView == nil {
-					anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-					anView?.canShowCallout = true
-				}
-				else {
-					anView?.annotation = annotation
-				}
+		guard let latitude = Location.latitude else{
+			print("car parking latitude was not recorded")
+			return
+		}
+		guard let longitude = Location.longitude else{
+			print("car parking longitude was not recorded")
+			return
+		}
+		let carParkingLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+		let carParkPlacemark = MKPlacemark(coordinate: carParkingLocation)
+		let carParkMapItem = MKMapItem(placemark: carParkPlacemark)
 		
-				//Set annotation-specific properties **AFTER**
-				//the view is dequeued or created...
+		// ask for navigation request
+		let directionsRequst = MKDirections.Request()
+		directionsRequst.source = sourceMapItem
+		directionsRequst.destination = carParkMapItem
+		directionsRequst.transportType = .walking
 		
-			let cpa = annotation as! CustomPointAnnotation
-			anView?.image = UIImage(named:cpa.imageName)
+		let directions = MKDirections(request: directionsRequst)
+		directions.calculate{response,_ in
+			guard let response = response else {return}
+			guard let primaryRoute = response.routes.first else {return}
+			self.map.addOverlay(primaryRoute.polyline)
+			//self.steps = primaryRoute.steps
+			
+		}
 		
-				return anView
 	}
-
 	
 	
     @IBAction func locateButton(_ sender: Any) {
@@ -133,7 +133,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
         if(locatButtonPressed){
             let userLocation = locationManager.location! as CLLocation
             carLocationPin.coordinate = userLocation.coordinate
-						carLocationPin.imageName = "round_directions_car_black_24dp"
+			carLocationPin.imageName = "round_directions_car_black_24dp"
             map.addAnnotation(carLocationPin)
             Location.latitude = userLocation.coordinate.latitude
             Location.longitude = userLocation.coordinate.longitude
@@ -251,6 +251,71 @@ UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
     
+}
+
+
+extension MapViewController: CLLocationManagerDelegate{
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations
+		locations: [CLLocation]) {
+		
+		let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+		print("locations = \(locValue.latitude) \(locValue.longitude)")
+		let userLocation = locations.last! as CLLocation
+		
+		// Drop a pin at user's Current Location
+		let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+		
+		map.showsUserLocation = true
+		
+		if(loginMap == 0){
+			self.map.setRegion(viewRegion, animated: false)
+			loginMap = 1
+		}
+		
+		
+		self.map.delegate = self
+	}
+	
+	
+}
+
+
+extension MapViewController: MKMapViewDelegate{
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+		if !(annotation is CustomPointAnnotation) {
+			return nil
+		}
+		
+		let reuseId = "test"
+		
+		var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+		if anView == nil {
+			anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+			anView?.canShowCallout = true
+		}
+		else {
+			anView?.annotation = annotation
+		}
+		
+		//Set annotation-specific properties **AFTER**
+		//the view is dequeued or created...
+		
+		let cpa = annotation as! CustomPointAnnotation
+		anView?.image = UIImage(named:cpa.imageName)
+		
+		return anView
+	}
+	
+	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+		if overlay is MKPolyline{
+			let renderer = MKPolylineRenderer(overlay:overlay)
+			renderer.strokeColor = .blue
+			renderer.lineWidth = 10
+			return renderer
+		}
+		return MKOverlayRenderer()
+	}
+
 }
 
 
