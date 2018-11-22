@@ -270,7 +270,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUh-JY-FRU">
                                         <rect key="frame" x="20" y="42" width="149" height="119"/>
-                                        <state key="normal" title="Button" image="location_button"/>
+                                        <state key="normal" title="Button" image="location button"/>
                                         <connections>
                                             <action selector="locateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wiW-Z1-xSi"/>
                                         </connections>
@@ -278,6 +278,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXk-ud-84H">
                                         <rect key="frame" x="247" y="42" width="149" height="119"/>
                                         <state key="normal" title="Button" image="find_car"/>
+                                        <connections>
+                                            <action selector="getDirection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3YS-8C-pvY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -414,7 +417,7 @@
     </scenes>
     <resources>
         <image name="find_car" width="288" height="288"/>
-        <image name="location_button" width="288" height="288"/>
+        <image name="location button" width="288" height="288"/>
         <image name="round_near_me_black_24dp" width="48" height="48"/>
     </resources>
 </document>

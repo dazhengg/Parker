@@ -37,7 +37,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 				if let carParkingLongtitude = Location.longitude{
 					let userLocation = CLLocation(latitude: carParkingLatitude, longitude: carParkingLongtitude)
 					carLocationPin.coordinate = userLocation.coordinate
-					carLocationPin.imageName = "round_directions_car_black_24dp"
+					carLocationPin.imageName = "car_parking_location"
 					map.addAnnotation(carLocationPin)
 					self.map.delegate = self
 				}
@@ -139,7 +139,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
         if(locatButtonPressed){
             let userLocation = locationManager.location! as CLLocation
             carLocationPin.coordinate = userLocation.coordinate
-			carLocationPin.imageName = "round_directions_car_black_24dp"
+			carLocationPin.imageName = "car_parking_location"
             map.addAnnotation(carLocationPin)
             Location.latitude = userLocation.coordinate.latitude
             Location.longitude = userLocation.coordinate.longitude
