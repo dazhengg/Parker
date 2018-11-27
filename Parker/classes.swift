@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CoreLocation
 // Usage:
 // Getting: phoneNumber = Storage.phoneNumberInE164
 // Setting: Storage.phoneNumberInE164 = phoneNumber
@@ -34,7 +34,7 @@ struct Location {
             print("Saving longitude as \(UserDefaults.standard.synchronize())")
         }
     }
-}
+} // end location 
 
 struct Storage {
     static var level: Int? {
@@ -47,5 +47,35 @@ struct Storage {
             print("Saving level as \(UserDefaults.standard.synchronize())")
         }
     }
-}
+    
+} // end storage
+
+struct User {
+     static var userName: String? {
+        get {
+            return UserDefaults.standard.string(forKey: "act_name")
+        }
+        
+        set (act_name) {
+            UserDefaults.standard.set(act_name, forKey: "act_name")
+            print("Saving account name as \(UserDefaults.standard.synchronize())")
+        }
+    }
+    
+     static var number: String? {
+        get {
+            return UserDefaults.standard.string(forKey: "act_number")
+        }
+        
+        set (act_name) {
+            UserDefaults.standard.set(act_name, forKey: "act_number")
+            print("Saving number as \(UserDefaults.standard.synchronize())")
+        }
+    }
+} // end of user
+
+
+
+
+
 
