@@ -12,6 +12,8 @@
 		045A1CC421A1020E004E46C7 /* Takepicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A1CC321A1020E004E46C7 /* Takepicture.swift */; };
 		6A481DB521A39A7B00F6A942 /* classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A481DB421A39A7B00F6A942 /* classes.swift */; };
 		6A9F0DFB21A0E0CB009436A1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9F0DFA21A0E0CB009436A1 /* SettingViewController.swift */; };
+		6AF0803921AE69FA00F2E897 /* InfoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF0803721AE69FA00F2E897 /* InfoStore.swift */; };
+		6AF0803A21AE69FA00F2E897 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AF0803821AE69FA00F2E897 /* GoogleService-Info.plist */; };
 		71988D1EF226E661E5F4C909 /* Pods_Parker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980037EFB8C2E6EE2C701058 /* Pods_Parker.framework */; };
 		BF247D6C219645CA00948E85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF247D6B219645CA00948E85 /* AppDelegate.swift */; };
 		BF247D6E219645CA00948E85 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF247D6D219645CA00948E85 /* MapViewController.swift */; };
@@ -26,6 +28,8 @@
 		045A1CC321A1020E004E46C7 /* Takepicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Takepicture.swift; sourceTree = "<group>"; };
 		6A481DB421A39A7B00F6A942 /* classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = classes.swift; sourceTree = "<group>"; };
 		6A9F0DFA21A0E0CB009436A1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		6AF0803721AE69FA00F2E897 /* InfoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoStore.swift; sourceTree = "<group>"; };
+		6AF0803821AE69FA00F2E897 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92048ACF94127D0BF6CC7893 /* Pods-Parker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Parker/Pods-Parker.debug.xcconfig"; sourceTree = "<group>"; };
 		980037EFB8C2E6EE2C701058 /* Pods_Parker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF247D68219645CA00948E85 /* Parker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +103,7 @@
 			children = (
 				6A9F0DFD21A0E0E3009436A1 /* CustomViewController */,
 				BF247D6B219645CA00948E85 /* AppDelegate.swift */,
+				6AF0803721AE69FA00F2E897 /* InfoStore.swift */,
 				6A481DB421A39A7B00F6A942 /* classes.swift */,
 				BF247D6F219645CA00948E85 /* Main.storyboard */,
 				045A1CC321A1020E004E46C7 /* Takepicture.swift */,
@@ -106,6 +111,7 @@
 				045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */,
 				BF247D72219645CD00948E85 /* Assets.xcassets */,
 				BF247D74219645CD00948E85 /* LaunchScreen.storyboard */,
+				6AF0803821AE69FA00F2E897 /* GoogleService-Info.plist */,
 				BF247D77219645CD00948E85 /* Info.plist */,
 			);
 			path = Parker;
@@ -173,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF247D76219645CD00948E85 /* LaunchScreen.storyboard in Resources */,
+				6AF0803A21AE69FA00F2E897 /* GoogleService-Info.plist in Resources */,
 				BF247D73219645CD00948E85 /* Assets.xcassets in Resources */,
 				BF247D71219645CA00948E85 /* Main.storyboard in Resources */,
 			);
@@ -261,6 +268,7 @@
 				6A481DB521A39A7B00F6A942 /* classes.swift in Sources */,
 				045A1CC221A0EF89004E46C7 /* CountdownTimer.swift in Sources */,
 				BF247D6E219645CA00948E85 /* MapViewController.swift in Sources */,
+				6AF0803921AE69FA00F2E897 /* InfoStore.swift in Sources */,
 				BF247D6C219645CA00948E85 /* AppDelegate.swift in Sources */,
 				045A1CC421A1020E004E46C7 /* Takepicture.swift in Sources */,
 				6A9F0DFB21A0E0CB009436A1 /* SettingViewController.swift in Sources */,
