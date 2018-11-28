@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import GooglePlaces
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {

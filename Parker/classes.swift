@@ -9,8 +9,8 @@
 import Foundation
 import CoreLocation
 // Usage:
-// Getting: phoneNumber = Storage.phoneNumberInE164
-// Setting: Storage.phoneNumberInE164 = phoneNumber
+// Getting: latitude = Location.latitude
+// Setting: Location.latitude = latitude
 
 struct Location {
     static var latitude: Double? {
