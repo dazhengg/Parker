@@ -341,7 +341,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lm2-9e-c5U">
-                                        <rect key="frame" x="20" y="23" width="92" height="20"/>
+                                        <rect key="frame" x="0.0" y="23" width="132" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="A08-RZ-3dZ"/>
                                         </constraints>
@@ -352,10 +352,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="tf3-5y-pN1" firstAttribute="top" secondItem="Kya-kU-YnV" secondAttribute="top" id="RGu-44-qaZ"/>
-                                    <constraint firstItem="Lm2-9e-c5U" firstAttribute="leading" secondItem="Kya-kU-YnV" secondAttribute="leading" constant="20" id="Uqq-xd-hnW"/>
+                                    <constraint firstItem="Lm2-9e-c5U" firstAttribute="leading" secondItem="Kya-kU-YnV" secondAttribute="leading" id="Uqq-xd-hnW"/>
                                     <constraint firstAttribute="trailing" secondItem="tf3-5y-pN1" secondAttribute="trailing" constant="20" id="WZ4-Ee-kws"/>
                                     <constraint firstAttribute="bottom" secondItem="Lm2-9e-c5U" secondAttribute="bottom" constant="9" id="feN-Hw-RnK"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lm2-9e-c5U" secondAttribute="trailing" constant="20" id="gad-R2-mPh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lm2-9e-c5U" secondAttribute="trailing" id="gad-R2-mPh"/>
                                     <constraint firstItem="tf3-5y-pN1" firstAttribute="leading" secondItem="Kya-kU-YnV" secondAttribute="leading" constant="20" id="ikJ-62-RF2"/>
                                     <constraint firstAttribute="height" constant="52" id="vVZ-gj-pe5"/>
                                 </constraints>
