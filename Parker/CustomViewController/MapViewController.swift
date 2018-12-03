@@ -156,7 +156,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	@IBAction func nearMeButton(_ sender: Any) {
 		guard let currentCoordinate = locationManager.location?.coordinate else {return}
 		let viewRegion = MKCoordinateRegion(center: currentCoordinate, latitudinalMeters: 100, longitudinalMeters: 100)
-		self.map.setRegion(viewRegion, animated: false)
+		self.map.setRegion(viewRegion, animated: true)
 	}
 	
     @IBAction func locateButton(_ sender: Any) {
