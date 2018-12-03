@@ -122,7 +122,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		directions.calculate{response,_ in
 			guard let response = response else {return}
 			guard let primaryRoute = response.routes.first else {return}
-			self.map.removeOverlays(map.overlays)
+			self.map.removeOverlays(self.map.overlays)
 			self.map.addOverlay(primaryRoute.polyline)
 			//self.steps = primaryRoute.steps
 			self.navigationImageButton.setImage(UIImage(named: "cancel_find_car.png"), for: .normal)
