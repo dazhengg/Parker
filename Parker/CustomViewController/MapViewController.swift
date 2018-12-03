@@ -8,6 +8,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 
     
 
+		@IBOutlet weak var navigationImageButton: UIButton!
 		let carLocationPin = CustomPointAnnotation()
 		let currentLocationPin = CustomPointAnnotation()
 		var locationManager = CLLocationManager()
@@ -16,6 +17,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
         var levelTextField: UITextField?
         let numCols = 1
         var levelArray = [-1,0,1,2,3,4,5,6,7,8]
+		var dismissNavigation = false
 		//var steps = [MKRoute.Step]()
 		//var confirmedLevel = 0
 	
@@ -90,40 +92,47 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	@IBAction func getDirection(_ sender: Any) {
 		// getting the start point of navigation,
 		// which is current location
-		guard let currentLocationCoordinate = locationManager.location?.coordinate else{
-			return
-		}
-		let sourcePlacemark = MKPlacemark(coordinate: currentLocationCoordinate)
-		let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-		
-		// getting the destination of navigation
-		// which is where user parks the car
-		
-		guard let latitude = Location.latitude else{
-			print("car parking latitude was not recorded")
-			return
-		}
-		guard let longitude = Location.longitude else{
-			print("car parking longitude was not recorded")
-			return
-		}
-		let carParkingLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-		let carParkPlacemark = MKPlacemark(coordinate: carParkingLocation)
-		let carParkMapItem = MKMapItem(placemark: carParkPlacemark)
-		
-		// ask for navigation request
-		let directionsRequst = MKDirections.Request()
-		directionsRequst.source = sourceMapItem
-		directionsRequst.destination = carParkMapItem
-		directionsRequst.transportType = .walking
-		
-		let directions = MKDirections(request: directionsRequst)
-		directions.calculate{response,_ in
-			guard let response = response else {return}
-			guard let primaryRoute = response.routes.first else {return}
-			self.map.addOverlay(primaryRoute.polyline)
-			//self.steps = primaryRoute.steps
+		if(!dismissNavigation){
+				guard let currentLocationCoordinate = locationManager.location?.coordinate else{
+					return
+				}
+				let sourcePlacemark = MKPlacemark(coordinate: currentLocationCoordinate)
+				let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
 			
+				// getting the destination of navigation
+				// which is where user parks the car
+			
+				guard let latitude = Location.latitude else{
+					print("car parking latitude was not recorded")
+					return
+				}
+				guard let longitude = Location.longitude else{
+					print("car parking longitude was not recorded")
+					return
+				}
+				let carParkingLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+				let carParkPlacemark = MKPlacemark(coordinate: carParkingLocation)
+				let carParkMapItem = MKMapItem(placemark: carParkPlacemark)
+			
+				// ask for navigation request
+				let directionsRequst = MKDirections.Request()
+				directionsRequst.source = sourceMapItem
+				directionsRequst.destination = carParkMapItem
+				directionsRequst.transportType = .walking
+			
+				let directions = MKDirections(request: directionsRequst)
+				directions.calculate{response,_ in
+					guard let response = response else {return}
+					guard let primaryRoute = response.routes.first else {return}
+					self.map.addOverlay(primaryRoute.polyline)
+					//self.steps = primaryRoute.steps
+					self.navigationImageButton.setImage(UIImage(named: "cancel_find_car.png"), for: .normal)
+					self.dismissNavigation = true
+				}
+		}else{
+			self.navigationImageButton.setImage(UIImage(named: "find_car.png"), for: .normal)
+			self.dismissNavigation = false
+			map.removeOverlays(map.overlays)
 		}
 		
 	}

@@ -275,7 +275,7 @@
                                             <action selector="locateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wiW-Z1-xSi"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXk-ud-84H">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXk-ud-84H">
                                         <rect key="frame" x="247" y="42" width="149" height="119"/>
                                         <state key="normal" title="Button" image="find_car"/>
                                         <connections>
@@ -350,6 +350,7 @@
                     </view>
                     <connections>
                         <outlet property="map" destination="QA7-A2-JuB" id="TUX-gt-z3U"/>
+                        <outlet property="navigationImageButton" destination="aXk-ud-84H" id="Qxb-AJ-cEm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
