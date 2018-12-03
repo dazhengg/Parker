@@ -90,55 +90,59 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	@IBOutlet weak var distanceLeftLabel: UILabel!
 	@IBOutlet weak var timeLeftLabel: UILabel!
 	
-
+	func navigationToDestination(){
+		guard let currentLocationCoordinate = locationManager.location?.coordinate else{
+			return
+		}
+		let sourcePlacemark = MKPlacemark(coordinate: currentLocationCoordinate)
+		let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+		
+		// getting the destination of navigation
+		// which is where user parks the car
+		
+		guard let latitude = Location.latitude else{
+			print("car parking latitude was not recorded")
+			return
+		}
+		guard let longitude = Location.longitude else{
+			print("car parking longitude was not recorded")
+			return
+		}
+		let carParkingLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+		let carParkPlacemark = MKPlacemark(coordinate: carParkingLocation)
+		let carParkMapItem = MKMapItem(placemark: carParkPlacemark)
+		
+		// ask for navigation request
+		let directionsRequst = MKDirections.Request()
+		directionsRequst.source = sourceMapItem
+		directionsRequst.destination = carParkMapItem
+		directionsRequst.transportType = .walking
+		
+		let directions = MKDirections(request: directionsRequst)
+		directions.calculate{response,_ in
+			guard let response = response else {return}
+			guard let primaryRoute = response.routes.first else {return}
+			self.map.removeOverlays(map.overlays)
+			self.map.addOverlay(primaryRoute.polyline)
+			//self.steps = primaryRoute.steps
+			self.navigationImageButton.setImage(UIImage(named: "cancel_find_car.png"), for: .normal)
+			self.dismissNavigation = true
+			let mdf = MKDistanceFormatter()
+			let dcf = DateComponentsFormatter()
+			mdf.units = .metric
+			dcf.unitsStyle = .full
+			//dcf.includesTimeRemainingPhrase = true
+			dcf.allowedUnits = [.minute]
+			self.distanceLeftLabel.text = mdf.string(fromDistance: primaryRoute.distance)
+			self.timeLeftLabel.text = dcf.string(from: primaryRoute.expectedTravelTime)
+		}
+	}
+	
 	@IBAction func getDirection(_ sender: Any) {
 		// getting the start point of navigation,
 		// which is current location
 		if(!dismissNavigation){
-				guard let currentLocationCoordinate = locationManager.location?.coordinate else{
-					return
-				}
-				let sourcePlacemark = MKPlacemark(coordinate: currentLocationCoordinate)
-				let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-			
-				// getting the destination of navigation
-				// which is where user parks the car
-			
-				guard let latitude = Location.latitude else{
-					print("car parking latitude was not recorded")
-					return
-				}
-				guard let longitude = Location.longitude else{
-					print("car parking longitude was not recorded")
-					return
-				}
-				let carParkingLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-				let carParkPlacemark = MKPlacemark(coordinate: carParkingLocation)
-				let carParkMapItem = MKMapItem(placemark: carParkPlacemark)
-			
-				// ask for navigation request
-				let directionsRequst = MKDirections.Request()
-				directionsRequst.source = sourceMapItem
-				directionsRequst.destination = carParkMapItem
-				directionsRequst.transportType = .walking
-			
-				let directions = MKDirections(request: directionsRequst)
-				directions.calculate{response,_ in
-					guard let response = response else {return}
-					guard let primaryRoute = response.routes.first else {return}
-					self.map.addOverlay(primaryRoute.polyline)
-					//self.steps = primaryRoute.steps
-					self.navigationImageButton.setImage(UIImage(named: "cancel_find_car.png"), for: .normal)
-					self.dismissNavigation = true
-					let mdf = MKDistanceFormatter()
-					let dcf = DateComponentsFormatter()
-					mdf.units = .metric
-					dcf.unitsStyle = .full
-					//dcf.includesTimeRemainingPhrase = true
-					dcf.allowedUnits = [.minute]
-					self.distanceLeftLabel.text = mdf.string(fromDistance: primaryRoute.distance)
-					self.timeLeftLabel.text = dcf.string(from: primaryRoute.expectedTravelTime)
-				}
+			navigationToDestination()
 		}else{
 			self.navigationImageButton.setImage(UIImage(named: "find_car.png"), for: .normal)
 			self.dismissNavigation = false
@@ -293,6 +297,12 @@ extension MapViewController: CLLocationManagerDelegate{
 		let viewRegion = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
 		
 		map.showsUserLocation = true
+		
+		// when user starts to ask for navigation
+		// we keep updating time and distance when location changed
+		if(dismissNavigation){
+			navigationToDestination()
+		}
 		
 		if(loginMap == 0){
 			self.map.setRegion(viewRegion, animated: false)
