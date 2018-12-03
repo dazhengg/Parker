@@ -87,7 +87,9 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	
 	
 	
-
+	@IBOutlet weak var distanceLeftLabel: UILabel!
+	@IBOutlet weak var timeLeftLabel: UILabel!
+	
 
 	@IBAction func getDirection(_ sender: Any) {
 		// getting the start point of navigation,
@@ -128,11 +130,21 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 					//self.steps = primaryRoute.steps
 					self.navigationImageButton.setImage(UIImage(named: "cancel_find_car.png"), for: .normal)
 					self.dismissNavigation = true
+					let mdf = MKDistanceFormatter()
+					let dcf = DateComponentsFormatter()
+					mdf.units = .metric
+					dcf.unitsStyle = .full
+					//dcf.includesTimeRemainingPhrase = true
+					dcf.allowedUnits = [.minute]
+					self.distanceLeftLabel.text = mdf.string(fromDistance: primaryRoute.distance)
+					self.timeLeftLabel.text = dcf.string(from: primaryRoute.expectedTravelTime)
 				}
 		}else{
 			self.navigationImageButton.setImage(UIImage(named: "find_car.png"), for: .normal)
 			self.dismissNavigation = false
 			map.removeOverlays(map.overlays)
+			self.distanceLeftLabel.text = ""
+			self.timeLeftLabel.text = ""
 		}
 		
 	}
