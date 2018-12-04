@@ -75,36 +75,48 @@ struct User {
 } // end of user
 
 struct Time {
-    static var remainingTime: TimeInterval? {
+
+    static var existingTimer: Bool? {
         get {
-            return UserDefaults.standard.double(forKey: "remainingTime")
+            return UserDefaults.standard.bool(forKey: "existingTimer")
         }
         
-        set (remainingTime) {
-            UserDefaults.standard.set(remainingTime, forKey: "remaingingTime")
-            print("Saving account name as \(UserDefaults.standard.synchronize())")
+        set (existingTimer) {
+            UserDefaults.standard.set(existingTimer, forKey: "existingTimer")
+            print("Saving existingTimer as \(UserDefaults.standard.synchronize())")
+        }
+    }
+
+    static var totalSeconds: Int? {
+        get {
+            return UserDefaults.standard.integer(forKey: "totalSeconds")
+        }
+        
+        set (totalSeconds) {
+            UserDefaults.standard.set(totalSeconds, forKey: "totalSeconds")
+            print("Saving totalSeconds as \(UserDefaults.standard.synchronize())")
         }
     }
     
-    static var startTime: TimeInterval? {
+    static var timeSwiped: Date? {
         get {
-            return UserDefaults.standard.double(forKey: "startTime")
+            return UserDefaults.standard.object(forKey: "timeSwiped") as? Date
         }
         
-        set (startTime) {
-            UserDefaults.standard.set(startTime, forKey: "startTime")
-            print("Saving number as \(UserDefaults.standard.synchronize())")
+        set (timeSwiped) {
+            UserDefaults.standard.set(timeSwiped, forKey: "timeSwiped")
+            print("Saving timeSwiped as \(UserDefaults.standard.synchronize())")
         }
     }
     
-    static var isPreviousTime: Bool? {
+    static var timerPaused: Bool? {
         get {
-            return UserDefaults.standard.bool(forKey: "isPreviousTime")
+            return UserDefaults.standard.bool(forKey: "timerPaused")
         }
         
-        set (startTime) {
-            UserDefaults.standard.set(startTime, forKey: "isPreviousTime")
-            print("Saving number as \(UserDefaults.standard.synchronize())")
+        set (timerPaused) {
+            UserDefaults.standard.set(timerPaused, forKey: "timerPaused")
+            print("Saving timerPaused as \(UserDefaults.standard.synchronize())")
         }
     }
 }

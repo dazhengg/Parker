@@ -12,84 +12,98 @@ import UserNotifications
 
 class CountdownTimerViewController: UIViewController{
    
-    
     @IBOutlet weak var start: UIButton!
     @IBOutlet weak var timershowing: UILabel!
-    
     @IBOutlet weak var picker: UIPickerView!
+    
     var hour: Int = 0
     var minutes: Int = 0
-    
     var seconds: Int = 0
     var totalseconds: Int = 0
     
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-    var resumeTapped = false
-    
-    
+    var timerPaused = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        
         self.view.addGestureRecognizer(rightSwipe)
-        
+        if Time.existingTimer ?? false{
+            if Time.timerPaused ?? false {
+                totalseconds = Time.totalSeconds ?? 0
+                timershowing.text = timeString(time: TimeInterval(totalseconds))
+                timerPaused = true
+            } else {
+                let now = Date()
+                let timeDiff = now.timeIntervalSince(Time.timeSwiped ?? Date())
+                totalseconds = (Time.totalSeconds ?? 0)  - Int(round(timeDiff))
+                if totalseconds > 0 {
+                    timershowing.text = timeString(time: TimeInterval(totalseconds))
+                    Time.timerPaused = false
+                    isTimerRunning = true
+                    runTimer()
+                }
+            }
+        }
     }
+    
     @objc func handleSwipe(sender: UISwipeGestureRecognizer){
         if sender.state == .ended{
-            
-                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vb = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController
-                self.present(vb, animated: false, completion: nil)
-            }
+            Time.totalSeconds = totalseconds
+            Time.timeSwiped = Date()
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vb = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController
+            self.present(vb, animated: false, completion: nil)
+        }
     }
     
     @IBAction func start(_ sender: UIButton) {
-    
-        
-        self.totalseconds = 0
-        self.totalseconds = Int(self.hour) * 3600 + Int(self.minutes) * 60 + Int(self.seconds)
-        if isTimerRunning == false {
+        Time.existingTimer = true
+        Time.timerPaused = false
+        if timerPaused {
             runTimer()
-            //timer.invalidate()
+            isTimerRunning = true
+            timerPaused = false
+        } else {
+            if isTimerRunning == false {
+                totalseconds = hour * 3600 + minutes * 60 + seconds
+                runTimer()
+            }
         }
     }
     
     @IBAction func pause(_ sender: UIButton) {
-    
-    if self.resumeTapped == false {
+        if !timerPaused  && isTimerRunning  {
             timer.invalidate()
-            start.isEnabled = false
-            self.resumeTapped = true
-        } else {
-            runTimer()
-            self.resumeTapped = false
+            start.isEnabled = true
+            timerPaused = true
+            Time.timerPaused = true
+            //Time.totalSeconds = totalseconds
         }
-        
     }
     
     @IBAction func reset(_ sender: UIButton) {
-        Time.startTime = 0
-        Time.remainingTime = 0
-        Time.isPreviousTime = false
+        Time.existingTimer = false
         timer.invalidate()
         start.isEnabled = true
-        self.totalseconds = 0    //just reset timer to zero
+        totalseconds = 0    //just reset timer to zero
         timershowing.text = timeString(time: TimeInterval(totalseconds))
         isTimerRunning = false
+        timerPaused = false
     }
     
     func runTimer() {
-        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(CountdownTimerViewController.updateTimer)), userInfo: nil, repeats: true)
         isTimerRunning = true
     }
+    
     @objc func updateTimer() {
         if totalseconds < 1 {
             timer.invalidate()
+            isTimerRunning = false
         }else{
-            if self.totalseconds == 901{
+            if totalseconds == 901{
                 let content = UNMutableNotificationContent()
                 content.title = "Parking timer warning"
                 content.body = "You only have 15 min left"
@@ -97,14 +111,13 @@ class CountdownTimerViewController: UIViewController{
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                 let request = UNNotificationRequest(identifier: "TestIdentifier", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                
-                
             }
+            
             totalseconds -= 1     //This will decrement(count down)the seconds.
             timershowing.text = timeString(time: TimeInterval(totalseconds)) //This will update the label.
         }
-        
     }
+    
     func timeString(time:TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
@@ -117,6 +130,7 @@ class CountdownTimerViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
 }
+
 extension CountdownTimerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
@@ -132,12 +146,12 @@ extension CountdownTimerViewController: UIPickerViewDelegate, UIPickerViewDataSo
         default:
             return 0
         }
-        
-        
     }
+    
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return pickerView.frame.size.width/3
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0:
@@ -150,6 +164,7 @@ extension CountdownTimerViewController: UIPickerViewDelegate, UIPickerViewDataSo
             return ""
         }
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
         case 0:
@@ -162,8 +177,6 @@ extension CountdownTimerViewController: UIPickerViewDelegate, UIPickerViewDataSo
             break;
         }
     }
-    
-    
 }
 
 

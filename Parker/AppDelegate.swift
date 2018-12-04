@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print ("granted:\(granted)")
         }
         FirebaseApp.configure()
+        Time.existingTimer = false
+        
         return true
     }
     
