@@ -1,6 +1,7 @@
 # Notes 3
-# Haoran(Paul) Zhang
-
+# Haoran(Paul) Zhang  
+1. Fixed the bug the count down timer is not able to countiue when the viewcontroller is swiped to other view controller.  
+https://github.com/ECS189E/Parker/commit/ed8672db9cb1cffc3a150d438cbe83ca1ebe3f98
 
 # Zekai Zhao
 1. added cancel navigation option https://github.com/ECS189E/Parker/commit/60ba3856ec0697e28bdf20565d21f260ac98d0d9
