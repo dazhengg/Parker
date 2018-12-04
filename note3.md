@@ -12,3 +12,10 @@
 3. set up camera VC 
 https://github.com/ECS189E/Parker/commit/2784a3cde8f023c4b4334068851ca577c373fa4d  
 https://github.com/ECS189E/Parker/commit/288d948e78594f173d5937bb08771562c9b2bc5d  
+
+# David Zheng 
+1. Permenent storage handling for info. https://github.com/ECS189E/Parker/blob/master/Parker/classes.swift 
+2. Reverse geolocation to allow users to find their own car. https://github.com/ECS189E/Parker/blob/master/Parker/InfoStore.swift (not mentioned last time) 
+3. Allow for number plating of the car and naming for users for permenent storage https://github.com/ECS189E/Parker/blob/master/Parker/CustomViewController/SettingViewController.swift
+4. Helped clean up UI ideals for a cleaner flow (not complete).  
+
