@@ -165,7 +165,7 @@ class TimerViewController: UIViewController{
     if isTimerRunning == false {
             runTimer()
         isTimerRunning = true
-    
+        
         
         }
     }
@@ -183,14 +183,11 @@ class TimerViewController: UIViewController{
             self.resumeTapped = false
             runTimer()
             isTimerRunning = true
-        
         }
         
     }
     
     @IBAction func reset(_ sender: UIButton) {
-    
-    
         timer.invalidate()
         start.isEnabled = true
         self.seconds = 0    //just reset timer to zero

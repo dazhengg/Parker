@@ -74,6 +74,41 @@ struct User {
     }
 } // end of user
 
+struct Time {
+    static var remainingTime: TimeInterval? {
+        get {
+            return UserDefaults.standard.double(forKey: "remainingTime")
+        }
+        
+        set (remainingTime) {
+            UserDefaults.standard.set(remainingTime, forKey: "remaingingTime")
+            print("Saving account name as \(UserDefaults.standard.synchronize())")
+        }
+    }
+    
+    static var startTime: TimeInterval? {
+        get {
+            return UserDefaults.standard.double(forKey: "startTime")
+        }
+        
+        set (startTime) {
+            UserDefaults.standard.set(startTime, forKey: "startTime")
+            print("Saving number as \(UserDefaults.standard.synchronize())")
+        }
+    }
+    
+    static var isPreviousTime: Bool? {
+        get {
+            return UserDefaults.standard.bool(forKey: "isPreviousTime")
+        }
+        
+        set (startTime) {
+            UserDefaults.standard.set(startTime, forKey: "isPreviousTime")
+            print("Saving number as \(UserDefaults.standard.synchronize())")
+        }
+    }
+}
+
 
 
 

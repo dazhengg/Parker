@@ -47,7 +47,7 @@ class CountdownTimerViewController: UIViewController{
     
     @IBAction func start(_ sender: UIButton) {
     
-    
+        
         self.totalseconds = 0
         self.totalseconds = Int(self.hour) * 3600 + Int(self.minutes) * 60 + Int(self.seconds)
         if isTimerRunning == false {
@@ -70,14 +70,16 @@ class CountdownTimerViewController: UIViewController{
     }
     
     @IBAction func reset(_ sender: UIButton) {
-    
-    
+        Time.startTime = 0
+        Time.remainingTime = 0
+        Time.isPreviousTime = false
         timer.invalidate()
         start.isEnabled = true
         self.totalseconds = 0    //just reset timer to zero
         timershowing.text = timeString(time: TimeInterval(totalseconds))
         isTimerRunning = false
     }
+    
     func runTimer() {
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(CountdownTimerViewController.updateTimer)), userInfo: nil, repeats: true)
