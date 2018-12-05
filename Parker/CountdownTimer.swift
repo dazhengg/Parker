@@ -53,7 +53,7 @@ class CountdownTimerViewController: UIViewController{
             Time.totalSeconds = totalseconds
             Time.timeSwiped = Date()
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vb = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController
+            let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
             self.present(vb, animated: false, completion: nil)
         }
     }

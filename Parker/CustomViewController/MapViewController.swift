@@ -52,7 +52,11 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			
 			let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
 			leftSwipe.direction = .left
-					self.view.addGestureRecognizer(leftSwipe)
+			self.view.addGestureRecognizer(leftSwipe)
+			
+			let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+			rightSwipe.direction = .right
+			self.view.addGestureRecognizer(rightSwipe)
 			
 		}
 	
@@ -65,10 +69,19 @@ UIPickerViewDelegate, UIPickerViewDataSource{
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let vb = storyboard.instantiateViewController(withIdentifier: "takepictureViewController") as! takepictureViewController
                 self.present(vb, animated: true, completion: nil)
+				break
+			case .right:
+				let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+				let vb = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController
+				self.present(vb, animated: false, completion: nil)
+				break
             case .left:
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vb = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController
+                let vb = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
                 self.present(vb, animated: false, completion: nil)
+				break
+				
+
             default:
                 break
                 

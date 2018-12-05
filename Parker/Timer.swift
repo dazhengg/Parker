@@ -97,14 +97,14 @@ class TimerViewController: UIViewController{
         if sender.state == .ended{
             switch sender.direction{
                 
-            case .right:
+            case .left:
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
                 self.present(vb, animated: false, completion: nil)
-            case .left:
+           /* case .left:
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let vb = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
-                self.present(vb, animated: false, completion: nil)
+                self.present(vb, animated: false, completion: nil)*/
             default:
                 break
                 
