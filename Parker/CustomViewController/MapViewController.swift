@@ -103,7 +103,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	@IBOutlet weak var distanceLeftLabel: UILabel!
 	@IBOutlet weak var timeLeftLabel: UILabel!
 	
-	func navigationToDestination(){
+	func navigationToDestination(reRegion:Bool){
 		guard let currentLocationCoordinate = locationManager.location?.coordinate else{
 			return
 		}
@@ -148,6 +148,14 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			dcf.allowedUnits = [.minute]
 			self.distanceLeftLabel.text = mdf.string(fromDistance: primaryRoute.distance)
 			self.timeLeftLabel.text = dcf.string(from: primaryRoute.expectedTravelTime)
+			
+			if(reRegion){ // if the navigation button is updated by pressed the find button
+				let center = CLLocationCoordinate2DMake((currentLocationCoordinate.latitude + carParkingLocation.latitude) * 0.5, (currentLocationCoordinate.longitude + carParkingLocation.longitude) * 0.5);
+				let viewRegion = MKCoordinateRegion(center: center, latitudinalMeters: primaryRoute.distance/2, longitudinalMeters: primaryRoute.distance/2)
+				self.map.setRegion(viewRegion, animated: true)
+
+				
+			}
 		}
 	}
 	
@@ -155,7 +163,8 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		// getting the start point of navigation,
 		// which is current location
 		if(!dismissNavigation){
-			navigationToDestination()
+			navigationToDestination(reRegion:true)
+			
 		}else{
 			self.navigationImageButton.setImage(UIImage(named: "find_car.png"), for: .normal)
 			self.dismissNavigation = false
@@ -181,7 +190,10 @@ UIPickerViewDelegate, UIPickerViewDataSource{
             map.addAnnotation(carLocationPin)
             Location.latitude = userLocation.coordinate.latitude
             Location.longitude = userLocation.coordinate.longitude
-            /*
+			
+			// remove the layout(navigation routine) after press the locate button
+			map.removeOverlays(map.overlays)
+			/*
             let reverseLocationManager = CLGeocoder()
             reverseLocationManager.reverseGeocodeLocation(userLocation, completionHandler: {(placemarks, error) -> Void in
                 print(userLocation)
@@ -314,7 +326,7 @@ extension MapViewController: CLLocationManagerDelegate{
 		// when user starts to ask for navigation
 		// we keep updating time and distance when location changed
 		if(dismissNavigation){
-			navigationToDestination()
+			navigationToDestination(reRegion: false)
 		}
 		
 		if(loginMap == 0){
