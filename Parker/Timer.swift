@@ -98,9 +98,10 @@ class TimerViewController: UIViewController{
             switch sender.direction{
                 
             case .left:
-                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-                self.present(vb, animated: false, completion: nil)
+				dismiss(animated: false)
+               // let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                //let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+               // self.present(vb, animated: false, completion: nil)
            /* case .left:
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let vb = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController

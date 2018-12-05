@@ -26,10 +26,10 @@ class takepictureViewController: UIViewController, UINavigationControllerDelegat
     }
     @objc func handleSwipe(sender: UISwipeGestureRecognizer){
         if sender.state == .ended{
-            
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-            self.present(vb, animated: false, completion: nil)
+            dismiss(animated: true)
+          //  let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+           // let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+          //  self.present(vb, animated: false, completion: nil)
         }
     }
     
