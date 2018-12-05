@@ -14,15 +14,18 @@ class TimerViewController: UIViewController{
     
     
     @IBOutlet weak var Timepresent: UILabel!
-    @IBOutlet weak var start: UIButton!
-    var hour: Int = 0
+	@IBOutlet weak var StartButton: UIButton!
+	@IBOutlet weak var ResetButton: UIButton!
+	
+
+	var hour: Int = 0
     var minutes: Int = 0
     
     var seconds: Int = 0
     
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
-    var resumeTapped = false
+    var timerPaused = false
     var calendar = Calendar.current
     lazy var currentDate = calendar.startOfDay(for: Date())
     lazy var endDate = calendar.startOfDay(for: Date()+1)
@@ -79,7 +82,39 @@ class TimerViewController: UIViewController{
         hourHandView.frame = CGRect(x: (UIScreen.main.bounds.width-3)/2, y: 130, width: 3, height: 45)
         
         self.view.addSubview(hourHandView)
-        
+		
+		
+		if  clockTime.existingTimer ?? false{
+			if clockTime.timerPaused ?? false { // if timer is paused
+				seconds = clockTime.clocksecends ?? 0
+				secondStr = clockTime.secondStr ?? 0
+				minitStr = clockTime.minitStr ?? 0
+				hourStr = clockTime.hourStr ?? 0
+				isTimerRunning = false
+				timerPaused = true
+				clockRunning()
+				
+			} else { // if timer is running
+				StartButton.setTitle("pause", for: .normal)
+				let now = Date()
+				let timeDiff = now.timeIntervalSince(clockTime.timeSwiped ?? Date())
+				seconds = (clockTime.clocksecends ?? 0)  + Int(round(timeDiff))
+				
+				secondStr = clockTime.secondStr ?? 0 + Int(round(timeDiff))
+				minitStr = clockTime.minitStr ?? 0 + (secondStr ?? 0) / 60
+				hourStr = clockTime.hourStr ?? 0 + (minitStr ?? 0) / 60
+				secondStr = secondStr ?? 0 % 60
+				minitStr = minitStr ?? 0 % 60
+				hourStr = hourStr ?? 0 % 60
+		
+				
+				timerPaused = false
+				isTimerRunning = false
+				clockRunning()
+				runTimer()
+
+			}
+		}
        
         /*let link = CADisplayLink(target: self, selector: #selector(TimerViewController.clockRunning))
         link.add(to: RunLoop.main, forMode: RunLoop.Mode.default)*/
@@ -93,12 +128,22 @@ class TimerViewController: UIViewController{
         leftSwipe.direction = .left
         self.view.addGestureRecognizer(leftSwipe)
     }
+	
     @objc func handleSwipe(sender: UISwipeGestureRecognizer){
         if sender.state == .ended{
             switch sender.direction{
                 
             case .left:
 				dismiss(animated: false)
+				//store the time data
+				clockTime.secondStr = secondStr
+				clockTime.minitStr = minitStr
+				clockTime.hourStr = hourStr
+				clockTime.existingTimer = true
+				clockTime.clocksecends = seconds
+				clockTime.timerPaused = timerPaused
+				clockTime.timeSwiped = Date()
+
                // let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 //let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
                // self.present(vb, animated: false, completion: nil)
@@ -120,31 +165,23 @@ class TimerViewController: UIViewController{
     
     
     @objc func clockRunning() {
-        
-        
-        /*//let date = Date()
-        let tZone = TimeZone.current
-        var calendar = Calendar.current
-        
-        let currentDate = calendar.startOfDay(for: Date())
-        //let daybyoneDate = calendar.startOfDay(for: Date()+1)
-        calendar.timeZone = tZone
-        
-        let currentTime = calendar.dateComponents([Calendar.Component.hour, Calendar.Component.minute, Calendar.Component.second], from: currentDate)*/
-        
-        seconds = seconds + 1
-        secondStr = secondStr! + 1
-        if secondStr == 60 {
-            secondStr = 0
-            minitStr = minitStr! + 1
-            if minitStr == 60 {
-                minitStr = 0
-                hourStr = hourStr! + 1
-                if hourStr == 13 {
-                    hourStr = 1
-                }
-            }
-        }
+		
+		if (!timerPaused){
+        	seconds = seconds + 1
+			
+			secondStr = secondStr! + 1
+			if secondStr == 60 {
+				secondStr = 0
+				minitStr = minitStr! + 1
+				if minitStr == 60 {
+					minitStr = 0
+					hourStr = hourStr! + 1
+					if hourStr == 13 {
+						hourStr = 1
+					}
+				}
+			}
+		}
         Timepresent.text = timeString(time: TimeInterval(seconds)) //This will update the label.
         
         // calculating angular for minute, hour and second
@@ -162,53 +199,52 @@ class TimerViewController: UIViewController{
    
     
     @IBAction func start(_ sender: UIButton) {
-    
-    if isTimerRunning == false {
-            runTimer()
-        isTimerRunning = true
-        
-        
-        }
+		
+		// if the timer is not running and not paused
+		if isTimerRunning == false && timerPaused == false {
+			runTimer()
+			isTimerRunning = true
+			StartButton.setTitle("pause", for: .normal)
+			ResetButton.isEnabled = true
+		}else if isTimerRunning { // if the timer is running, so user wants to pause it
+			timer.invalidate()
+			isTimerRunning = false
+			StartButton.setTitle("start", for: .normal )
+			timerPaused = true
+		}else{ // if the timer is paused, we resume running
+			self.timerPaused = false
+			runTimer()
+			isTimerRunning = true
+			StartButton.setTitle("pause", for: .normal)
+		}
+	
     }
     
-    
-    @IBAction func pause(_ sender: UIButton) {
-    
-    if self.resumeTapped == false {
-            timer.invalidate()
-            start.isEnabled = false
-            isTimerRunning = false
-        
-            self.resumeTapped = true
-        } else {
-            self.resumeTapped = false
-            runTimer()
-            isTimerRunning = true
-        }
-        
-    }
+	
     
     @IBAction func reset(_ sender: UIButton) {
         timer.invalidate()
-        start.isEnabled = true
         self.seconds = 0    //just reset timer to zero
         secondStr = 0
         minitStr = 0
         hourStr = 0
         //Timepresent.text = timeString(time: TimeInterval(seconds))
         isTimerRunning = false
+		StartButton.setTitle("start", for: .normal)
+		ResetButton.isEnabled = false
+		
     }
+	
     func runTimer() {
         if isTimerRunning == false {
-        
-        
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimerViewController.clockRunning), userInfo: nil, repeats: true)
-        //RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
-            self.resumeTapped = false
-    
-        isTimerRunning = true
+			timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimerViewController.clockRunning), userInfo: nil, repeats: true)
+			//RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
+			self.timerPaused = false
+		
+			isTimerRunning = true
         }
     }
+	
     /*@objc func updateTimer() {
         seconds += 1     //This will decrement(count down)the seconds.
         Timepresent.text = timeString(time: TimeInterval(seconds)) //This will update the label.

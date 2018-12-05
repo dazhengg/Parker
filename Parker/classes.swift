@@ -122,6 +122,89 @@ struct Time {
 }
 
 
+struct clockTime {
+	
+	static var existingTimer: Bool? {
+		get {
+			return UserDefaults.standard.bool(forKey: "existingTimer")
+		}
+		
+		set (existingTimer) {
+			UserDefaults.standard.set(existingTimer, forKey: "existingTimer")
+			print("Saving existingTimer as \(UserDefaults.standard.synchronize())")
+		}
+	}
+	
+	static var timeSwiped: Date? {
+		get {
+			return UserDefaults.standard.object(forKey: "timeSwiped") as? Date
+		}
+		
+		set (timeSwiped) {
+			UserDefaults.standard.set(timeSwiped, forKey: "timeSwiped")
+			print("Saving timeSwiped as \(UserDefaults.standard.synchronize())")
+		}
+	}
+	
+	static var timerPaused: Bool? {
+		get {
+			return UserDefaults.standard.bool(forKey: "timerPaused")
+		}
+		
+		set (timerPaused) {
+			UserDefaults.standard.set(timerPaused, forKey: "timerPaused")
+			print("Saving timerPaused as \(UserDefaults.standard.synchronize())")
+		}
+	}
+	
+	static var secondStr: Int? {
+		get {
+			return UserDefaults.standard.integer(forKey: "secondStr")
+		}
+		
+		set (secondStr) {
+			UserDefaults.standard.set(secondStr, forKey: "secondStr")
+			print("Saving secondStr as \(UserDefaults.standard.synchronize())")
+		}
+	}
+	
+	static var minitStr: Int? {
+		get {
+			return UserDefaults.standard.integer(forKey: "minitStr")
+		}
+		
+		set (minitStr) {
+			UserDefaults.standard.set(minitStr, forKey: "minitStr")
+			print("Saving minitStr as \(UserDefaults.standard.synchronize())")
+		}
+	}
+	
+	static var hourStr: Int? {
+		get {
+			return UserDefaults.standard.integer(forKey: "hourStr")
+		}
+		
+		set (hourStr) {
+			UserDefaults.standard.set(hourStr, forKey: "hourStr")
+			print("Saving hourStr as \(UserDefaults.standard.synchronize())")
+		}
+	}
+	
+	static var clocksecends: Int? {
+		get {
+			return UserDefaults.standard.integer(forKey: "clocksecends")
+		}
+		
+		set (clocksecends) {
+			UserDefaults.standard.set(clocksecends, forKey: "clocksecends")
+			print("Saving clocksecends as \(UserDefaults.standard.synchronize())")
+		}
+	}
+	
+	
+}
+
+
 
 
 
