@@ -151,7 +151,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			
 			if(reRegion){ // if the navigation button is updated by pressed the find button
 				let center = CLLocationCoordinate2DMake((currentLocationCoordinate.latitude + carParkingLocation.latitude) * 0.5, (currentLocationCoordinate.longitude + carParkingLocation.longitude) * 0.5);
-				let viewRegion = MKCoordinateRegion(center: center, latitudinalMeters: primaryRoute.distance/2, longitudinalMeters: primaryRoute.distance/2)
+				let viewRegion = MKCoordinateRegion(center: center, latitudinalMeters: primaryRoute.distance, longitudinalMeters: primaryRoute.distance)
 				self.map.setRegion(viewRegion, animated: true)
 
 				
