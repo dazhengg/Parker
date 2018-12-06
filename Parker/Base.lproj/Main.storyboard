@@ -88,7 +88,7 @@
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtI-0f-Rqr">
                                 <rect key="frame" x="294" y="716" width="100" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="JNa-B2-kko"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="900" constant="100" id="JNa-B2-kko"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Reset"/>
@@ -99,7 +99,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVN-dh-tmN">
                                 <rect key="frame" x="20" y="716" width="100" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="x81-Bc-IwA"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="900" constant="100" id="x81-Bc-IwA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="start"/>
@@ -121,6 +121,7 @@
                             <constraint firstItem="WtI-0f-Rqr" firstAttribute="top" secondItem="RIz-ev-3tE" secondAttribute="bottom" constant="161.5" id="7qy-YB-Mi9"/>
                             <constraint firstItem="DPn-f4-WrV" firstAttribute="trailing" secondItem="WtI-0f-Rqr" secondAttribute="trailing" constant="20" id="7wh-ke-hYr"/>
                             <constraint firstItem="DPn-f4-WrV" firstAttribute="trailing" secondItem="RIz-ev-3tE" secondAttribute="trailing" constant="80" id="DHd-wn-CwI"/>
+                            <constraint firstItem="WtI-0f-Rqr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AVN-dh-tmN" secondAttribute="trailing" constant="100" id="OHu-gF-xFw"/>
                             <constraint firstItem="AVN-dh-tmN" firstAttribute="top" secondItem="RIz-ev-3tE" secondAttribute="bottom" constant="161.5" id="THS-LC-tCo"/>
                             <constraint firstItem="DPn-f4-WrV" firstAttribute="bottom" secondItem="WtI-0f-Rqr" secondAttribute="bottom" constant="104" id="eEQ-MH-q2t"/>
                             <constraint firstItem="RIz-ev-3tE" firstAttribute="leading" secondItem="DPn-f4-WrV" secondAttribute="leading" constant="80" id="vya-rM-jCJ"/>

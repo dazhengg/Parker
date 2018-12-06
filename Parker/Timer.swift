@@ -84,8 +84,9 @@ class TimerViewController: UIViewController{
         self.view.addSubview(hourHandView)
 		
 		
-		if  clockTime.existingTimer ?? false{
-			if clockTime.timerPaused ?? false { // if timer is paused
+		if  clockTime.clockExistingTimer ?? false{
+			ResetButton.isEnabled = true
+			if clockTime.clockTimerPaused ?? false { // if timer is paused
 				seconds = clockTime.clocksecends ?? 0
 				secondStr = clockTime.secondStr ?? 0
 				minitStr = clockTime.minitStr ?? 0
@@ -97,7 +98,10 @@ class TimerViewController: UIViewController{
 			} else { // if timer is running
 				StartButton.setTitle("pause", for: .normal)
 				let now = Date()
-				let timeDiff = now.timeIntervalSince(clockTime.timeSwiped ?? Date())
+				print("now in clock is ", now)
+				print("timeSwiped  in clock is ", clockTime.clockTimeSwiped!)
+				let timeDiff = now.timeIntervalSince(clockTime.clockTimeSwiped ?? Date())
+				print("time diff in clock is ", timeDiff)
 				seconds = (clockTime.clocksecends ?? 0)  + Int(round(timeDiff))
 				
 				secondStr = clockTime.secondStr ?? 0 + Int(round(timeDiff))
@@ -139,10 +143,11 @@ class TimerViewController: UIViewController{
 				clockTime.secondStr = secondStr
 				clockTime.minitStr = minitStr
 				clockTime.hourStr = hourStr
-				clockTime.existingTimer = true
+				clockTime.clockExistingTimer = true
 				clockTime.clocksecends = seconds
-				clockTime.timerPaused = timerPaused
-				clockTime.timeSwiped = Date()
+				clockTime.clockTimerPaused = timerPaused
+				clockTime.clockTimeSwiped = Date()
+			//	print("clockTimeSwiped in clock timer ", clockTime.clockTimeSwiped!)
 
                // let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 //let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController

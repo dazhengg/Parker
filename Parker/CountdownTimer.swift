@@ -37,6 +37,8 @@ class CountdownTimerViewController: UIViewController{
             } else {
                 let now = Date()
                 let timeDiff = now.timeIntervalSince(Time.timeSwiped ?? Date())
+				print("now in countdown timer is ", now)
+				print("time diff in countdown timer is ", timeDiff)
                 totalseconds = (Time.totalSeconds ?? 0)  - Int(round(timeDiff))
                 if totalseconds > 0 {
                     timershowing.text = timeString(time: TimeInterval(totalseconds))
@@ -52,6 +54,7 @@ class CountdownTimerViewController: UIViewController{
         if sender.state == .ended{
             Time.totalSeconds = totalseconds
             Time.timeSwiped = Date()
+			print("timeswiped in counter down timer ", Time.timeSwiped!)
 			dismiss(animated: false)
          //   let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
           //  let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController

@@ -42,7 +42,7 @@ struct Storage {
             return UserDefaults.standard.integer(forKey: "level")
         }
         
-        set(latitude) {
+        set(level) {
             UserDefaults.standard.set(level, forKey: "level")
             print("Saving level as \(UserDefaults.standard.synchronize())")
         }
@@ -119,41 +119,41 @@ struct Time {
             print("Saving timerPaused as \(UserDefaults.standard.synchronize())")
         }
     }
-}
+}// end of time
 
 
 struct clockTime {
 	
-	static var existingTimer: Bool? {
+	static var clockExistingTimer: Bool? {
 		get {
-			return UserDefaults.standard.bool(forKey: "existingTimer")
+			return UserDefaults.standard.bool(forKey: "clockExistingTimer")
 		}
 		
-		set (existingTimer) {
-			UserDefaults.standard.set(existingTimer, forKey: "existingTimer")
-			print("Saving existingTimer as \(UserDefaults.standard.synchronize())")
+		set (clockExistingTimer) {
+			UserDefaults.standard.set(clockExistingTimer, forKey: "clockExistingTimer")
+			print("Saving clockExistingTimer as \(UserDefaults.standard.synchronize())")
 		}
 	}
 	
-	static var timeSwiped: Date? {
+	static var clockTimeSwiped: Date? {
 		get {
-			return UserDefaults.standard.object(forKey: "timeSwiped") as? Date
+			return UserDefaults.standard.object(forKey: "clockTimeSwiped") as? Date
 		}
 		
-		set (timeSwiped) {
-			UserDefaults.standard.set(timeSwiped, forKey: "timeSwiped")
-			print("Saving timeSwiped as \(UserDefaults.standard.synchronize())")
+		set (clockTimeSwiped) {
+			UserDefaults.standard.set(clockTimeSwiped, forKey: "clockTimeSwiped")
+			print("Saving clockTimeSwiped as \(UserDefaults.standard.synchronize())")
 		}
 	}
 	
-	static var timerPaused: Bool? {
+	static var clockTimerPaused: Bool? {
 		get {
-			return UserDefaults.standard.bool(forKey: "timerPaused")
+			return UserDefaults.standard.bool(forKey: "clockTimerPaused")
 		}
 		
-		set (timerPaused) {
-			UserDefaults.standard.set(timerPaused, forKey: "timerPaused")
-			print("Saving timerPaused as \(UserDefaults.standard.synchronize())")
+		set (clockTimerPaused) {
+			UserDefaults.standard.set(clockTimerPaused, forKey: "clockTimerPaused")
+			print("Saving clockTimerPaused as \(UserDefaults.standard.synchronize())")
 		}
 	}
 	
@@ -201,8 +201,7 @@ struct clockTime {
 		}
 	}
 	
-	
-}
+} // end of clock time
 
 
 
