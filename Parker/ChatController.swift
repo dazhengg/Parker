@@ -8,11 +8,7 @@ import Firebase
 
 class ChatController: JSQMessagesViewController {
  
-//    @IBAction func bck_go(_ sender: Any) {
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let go_back = storyBoard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-//        self.present(go_back, animated: true, completion: nil)
-//    }
+
     
     var messages = [JSQMessage]()
     
@@ -31,17 +27,36 @@ class ChatController: JSQMessagesViewController {
     
   
   
+  
     
     override func viewWillAppear(_ animated: Bool) {
-      
+
+       
+        
         let defaults = UserDefaults.standard
         
-        if  let id = defaults.string(forKey: "jsq_id"),
-            let name = defaults.string(forKey: "jsq_name")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm"
+        
+        
+   
+        if let id = defaults.string(forKey: "jsq_id"), var name = defaults.string(forKey: "jsq_name")
         {
             senderId = id
+           
+            name += " " + formatter.string(from: Date())
             senderDisplayName = name
+            
+            let currTime    = name
+            let currTimeArr = currTime.components(separatedBy: " ") // :[String] type
+            
+            let named    = currTimeArr[0]
+            let timed = currTimeArr[1]
+
+                let fix_time = named + " " + timed
+            senderDisplayName = fix_time
         }
+            
         else
         {
             senderId = String(arc4random_uniform(999999))
@@ -53,7 +68,8 @@ class ChatController: JSQMessagesViewController {
             showDisplayNameDialog()
         }
         
-        title = "Chat: \(senderDisplayName!)"
+        
+         title = "Chat: \(senderDisplayName!)"
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showDisplayNameDialog))
         tapGesture.numberOfTapsRequired = 1
@@ -92,17 +108,19 @@ class ChatController: JSQMessagesViewController {
     {
         let defaults = UserDefaults.standard
         
-        let alert = UIAlertController(title: "Your Display Name", message: "Before you can chat, please choose a display name. Others will see this name when you send chat messages. Change your display name again by tapping the navigation bar.", preferredStyle: .alert)
+    
+        
+        let alert = UIAlertController(title: "Your Display Name", message: "Before you can chat, please choose a display name. Others will see this name when you send chat messages. Change your display name again by tapping the navigation bar. Only one word names will be accepted i.e Bobby, not Bob the Builder", preferredStyle: .alert)
         
         alert.addTextField { textField in
             
-            if let name = defaults.string(forKey: "jsq_name")
+            if let name = defaults.string(forKey: "jsq_name") // can you do this part zekai too tired :-( can't think anymore
             {
                 textField.text = name
             }
             else
             {
-                let names = ["Cool Lion", "Cool Wayne", "Warm Dog", "Cool Hippo", "Hot Sun", "Cold Rain", "Long Sun"]
+                let names = ["Rob", "Bob", "Yeezy", "Jumpman", "Sun", "Rain", "Shine"]
                 textField.text = names[Int(arc4random_uniform(UInt32(names.count)))]
             }
         }
@@ -148,6 +166,7 @@ class ChatController: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString!
     {
         return messages[indexPath.item].senderId == senderId ? nil : NSAttributedString(string: messages[indexPath.item].senderDisplayName)
+        
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat
@@ -158,8 +177,9 @@ class ChatController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!)
     {
         let ref = Constants.refs.databaseChats.childByAutoId()
-        
-        let message = ["sender_id": senderId, "name": senderDisplayName, "text": text]
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm"
+        let message = ["sender_id": senderId, "name": senderDisplayName, "text": text+"  "+formatter.string(from: Date())]
         
         ref.setValue(message)
         
