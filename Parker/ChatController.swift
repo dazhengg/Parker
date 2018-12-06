@@ -158,9 +158,8 @@ class ChatController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!)
     {
         let ref = Constants.refs.databaseChats.childByAutoId()
-		let formatter = DateFormatter()
-		formatter.dateFormat = "hh:mm"
-        let message = ["sender_id": senderId, "name": senderDisplayName, "text": text+"  "+formatter.string(from: Date())]
+        
+        let message = ["sender_id": senderId, "name": senderDisplayName, "text": text]
         
         ref.setValue(message)
         
