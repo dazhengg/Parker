@@ -27,6 +27,11 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
+		//make naviagtion bar transclucent
+		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		self.navigationController?.navigationBar.shadowImage = UIImage()
+		self.navigationController?.navigationBar.isTranslucent = true
+		self.navigationController?.view.backgroundColor = .clear
 		self.locationManager.requestWhenInUseAuthorization()
 		
 		if CLLocationManager.locationServicesEnabled() {

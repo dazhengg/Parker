@@ -298,17 +298,6 @@
                                     <constraint firstItem="BUh-JY-FRU" firstAttribute="top" secondItem="Fco-zw-MNA" secondAttribute="top" constant="42" id="uEx-GY-qGZ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTf-4I-olA">
-                                <rect key="frame" x="30" y="88" width="44" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="jrv-Vl-D0C"/>
-                                    <constraint firstAttribute="height" constant="30" id="s2s-Xd-5B2"/>
-                                </constraints>
-                                <state key="normal" title="Info"/>
-                                <connections>
-                                    <segue destination="TfI-01-T9b" kind="show" id="Yvp-k7-6hB"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Eh-4G-kU1">
                                 <rect key="frame" x="8" y="651" width="34" height="37"/>
                                 <constraints>
@@ -321,35 +310,17 @@
                                     <action selector="nearMeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KUO-01-j6N"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68Y-su-pmv">
-                                <rect key="frame" x="100" y="88" width="178" height="30"/>
-                                <state key="normal" title="Leaving / Parking"/>
-                                <connections>
-                                    <segue destination="jEB-uS-dqg" kind="show" id="YDF-no-chW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhk-Zv-f72">
-                                <rect key="frame" x="300" y="88" width="94" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Lfx-eA-Ufx"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Rgo-Yz-zIJ"/>
-                                </constraints>
-                                <state key="normal" title="Plate Number"/>
-                                <connections>
-                                    <segue destination="jrd-2q-ED6" kind="show" id="YVF-Hs-jZI"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fG3-ec-8Rw">
-                                <rect key="frame" x="142" y="646" width="172" height="50"/>
+                                <rect key="frame" x="102" y="646" width="212" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k92-FM-YKb">
-                                        <rect key="frame" x="20" y="0.0" width="132" height="22"/>
+                                        <rect key="frame" x="20" y="0.0" width="172" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASS-xK-bkU">
-                                        <rect key="frame" x="20" y="30" width="132" height="20"/>
+                                        <rect key="frame" x="20" y="30" width="172" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="QDD-22-Dsy"/>
                                         </constraints>
@@ -372,30 +343,61 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="68Y-su-pmv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1cT-nz-a6t"/>
                             <constraint firstItem="QA7-A2-JuB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3jN-cP-HHn"/>
                             <constraint firstItem="Fco-zw-MNA" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7B0-F1-AAI"/>
                             <constraint firstItem="Fco-zw-MNA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8Mx-Sz-Lc3"/>
-                            <constraint firstItem="68Y-su-pmv" firstAttribute="leading" secondItem="kTf-4I-olA" secondAttribute="trailing" constant="26" id="IKC-fB-bsd"/>
-                            <constraint firstItem="kTf-4I-olA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JGC-kh-maa"/>
-                            <constraint firstItem="kTf-4I-olA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.25" id="MPI-Yf-56f"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QA7-A2-JuB" secondAttribute="bottom" constant="165" id="MWk-6w-7M2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fG3-ec-8Rw" secondAttribute="trailing" constant="100" id="OGv-Ip-DG6"/>
                             <constraint firstItem="Fco-zw-MNA" firstAttribute="top" secondItem="QA7-A2-JuB" secondAttribute="bottom" constant="-1" id="OWD-UW-M9K"/>
-                            <constraint firstItem="fhk-Zv-f72" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QR3-cq-LYX"/>
                             <constraint firstItem="QA7-A2-JuB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="aTb-7Z-X8I"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QA7-A2-JuB" secondAttribute="trailing" id="cDh-Dh-bxO"/>
-                            <constraint firstItem="fhk-Zv-f72" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1.75" constant="-15.25" id="d04-hT-Dym"/>
                             <constraint firstItem="1Eh-4G-kU1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="dVL-H6-jTq"/>
                             <constraint firstItem="Fco-zw-MNA" firstAttribute="top" secondItem="1Eh-4G-kU1" secondAttribute="bottom" constant="8" id="sfF-QO-PTB"/>
                             <constraint firstItem="Fco-zw-MNA" firstAttribute="top" secondItem="fG3-ec-8Rw" secondAttribute="bottom" id="uK6-Ht-DtE"/>
-                            <constraint firstItem="fhk-Zv-f72" firstAttribute="leading" secondItem="68Y-su-pmv" secondAttribute="trailing" constant="22" id="uec-wZ-UEx"/>
                             <constraint firstItem="Fco-zw-MNA" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xgs-cl-xz0"/>
-                            <constraint firstItem="fG3-ec-8Rw" firstAttribute="leading" secondItem="1Eh-4G-kU1" secondAttribute="trailing" constant="100" id="yQz-Q1-024"/>
+                            <constraint firstItem="fG3-ec-8Rw" firstAttribute="leading" secondItem="1Eh-4G-kU1" secondAttribute="trailing" constant="60" id="yQz-Q1-024"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5TX-Z8-mKj"/>
+                    <navigationItem key="navigationItem" id="5TX-Z8-mKj">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="m4j-Xp-Fgx">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kTf-4I-olA">
+                                <rect key="frame" x="20" y="7" width="44" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="jrv-Vl-D0C"/>
+                                    <constraint firstAttribute="height" constant="30" id="s2s-Xd-5B2"/>
+                                </constraints>
+                                <state key="normal" title="Info"/>
+                                <connections>
+                                    <segue destination="TfI-01-T9b" kind="show" id="Yvp-k7-6hB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="68Y-su-pmv">
+                            <rect key="frame" x="148.5" y="7" width="117" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Leaving / Parking"/>
+                            <connections>
+                                <segue destination="jEB-uS-dqg" kind="show" id="YDF-no-chW"/>
+                            </connections>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="VFR-vn-o12">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fhk-Zv-f72">
+                                <rect key="frame" x="300" y="7" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Lfx-eA-Ufx"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Rgo-Yz-zIJ"/>
+                                </constraints>
+                                <state key="normal" title="Plate Number"/>
+                                <connections>
+                                    <segue destination="jrd-2q-ED6" kind="show" id="YVF-Hs-jZI"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="distanceLeftLabel" destination="k92-FM-YKb" id="Ufi-zA-SIU"/>
                         <outlet property="map" destination="QA7-A2-JuB" id="TUX-gt-z3U"/>
