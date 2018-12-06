@@ -95,7 +95,7 @@ class TimerViewController: UIViewController{
 				clockRunning()
 				
 			} else { // if timer is running
-				StartButton.setTitle("pause", for: .normal)
+				StartButton.setTitle("Pause", for: .normal)
 				let now = Date()
 				print("now in clock is ", now)
 				print("timeSwiped  in clock is ", clockTime.clockTimeSwiped!)
@@ -208,18 +208,18 @@ class TimerViewController: UIViewController{
 		if isTimerRunning == false && timerPaused == false {
 			runTimer()
 			isTimerRunning = true
-			StartButton.setTitle("pause", for: .normal)
+			StartButton.setTitle("Pause", for: .normal)
 			
 		}else if isTimerRunning { // if the timer is running, so user wants to pause it
 			timer.invalidate()
 			isTimerRunning = false
-			StartButton.setTitle("start", for: .normal )
+			StartButton.setTitle("Start", for: .normal )
 			timerPaused = true
 		}else{ // if the timer is paused, we resume running
 			self.timerPaused = false
 			runTimer()
 			isTimerRunning = true
-			StartButton.setTitle("pause", for: .normal)
+			StartButton.setTitle("Pause", for: .normal)
 		}
 	
     }
@@ -234,7 +234,7 @@ class TimerViewController: UIViewController{
         hourStr = 0
         //Timepresent.text = timeString(time: TimeInterval(seconds))
         isTimerRunning = false
-		StartButton.setTitle("start", for: .normal)
+		StartButton.setTitle("Start", for: .normal)
 		clockRunning()
 		
     }
