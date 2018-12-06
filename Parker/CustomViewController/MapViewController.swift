@@ -81,9 +81,16 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 				self.present(vb, animated: false, completion: nil)
 				break
 			case .left:
+			//	let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+			//	let vb = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
+			//	self.present(vb, animated: false, completion: nil)
 				let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-				let vb = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
-				self.present(vb, animated: false, completion: nil)
+				let vc = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
+				if (navigationController != nil) {
+					navigationController?.pushViewController(vc, animated: true)
+				} else {
+					print("Cannot find navigation controller.")
+				}
 				break
 				
 				
@@ -93,6 +100,8 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			}
 		}
 	}
+	
+	
 	
 	
 	

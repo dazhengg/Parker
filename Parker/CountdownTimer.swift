@@ -27,8 +27,8 @@ class CountdownTimerViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        self.view.addGestureRecognizer(rightSwipe)
+    //    let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
+   //     self.view.addGestureRecognizer(rightSwipe)
         if Time.existingTimer ?? false{
             if Time.timerPaused ?? false {
                 totalseconds = Time.totalSeconds ?? 0
@@ -50,18 +50,17 @@ class CountdownTimerViewController: UIViewController{
         }
     }
     
-    @objc func handleSwipe(sender: UISwipeGestureRecognizer){
-        if sender.state == .ended{
-            Time.totalSeconds = totalseconds
-            Time.timeSwiped = Date()
-			print("timeswiped in counter down timer ", Time.timeSwiped!)
-			dismiss(animated: false)
-         //   let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-          //  let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-          //  self.present(vb, animated: false, completion: nil)
-        }
-    }
-    
+//    @objc func handleSwipe(sender: UISwipeGestureRecognizer){
+//        if sender.state == .ended{
+//            Time.totalSeconds = totalseconds
+//            Time.timeSwiped = Date()
+//			dismiss(animated: false)
+//         //   let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//          //  let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+//          //  self.present(vb, animated: false, completion: nil)
+//        }
+//    }
+	
     @IBAction func start(_ sender: UIButton) {
         Time.existingTimer = true
         Time.timerPaused = false
@@ -119,6 +118,7 @@ class CountdownTimerViewController: UIViewController{
             
             totalseconds -= 1     //This will decrement(count down)the seconds.
             timershowing.text = timeString(time: TimeInterval(totalseconds)) //This will update the label.
+			
         }
     }
     
@@ -133,6 +133,12 @@ class CountdownTimerViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		Time.totalSeconds = totalseconds
+		Time.timeSwiped = Date()
+	}
+	
 }
 
 extension CountdownTimerViewController: UIPickerViewDelegate, UIPickerViewDataSource{

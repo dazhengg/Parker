@@ -26,6 +26,7 @@ class TimerViewController: UIViewController{
     var timer = Timer()
     var isTimerRunning = false //This will be used to make sure only one timer is created at a time.
     var timerPaused = false
+
     var calendar = Calendar.current
     lazy var currentDate = calendar.startOfDay(for: Date())
     lazy var endDate = calendar.startOfDay(for: Date()+1)
@@ -142,7 +143,6 @@ class TimerViewController: UIViewController{
 				clockTime.secondStr = secondStr
 				clockTime.minitStr = minitStr
 				clockTime.hourStr = hourStr
-				clockTime.clockExistingTimer = true
 				clockTime.clocksecends = seconds
 				clockTime.clockTimerPaused = timerPaused
 				clockTime.clockTimeSwiped = Date()
@@ -203,7 +203,7 @@ class TimerViewController: UIViewController{
    
     
     @IBAction func start(_ sender: UIButton) {
-		
+		clockTime.clockExistingTimer = true
 		// if the timer is not running and not paused
 		if isTimerRunning == false && timerPaused == false {
 			runTimer()
@@ -234,6 +234,8 @@ class TimerViewController: UIViewController{
         hourStr = 0
         //Timepresent.text = timeString(time: TimeInterval(seconds))
         isTimerRunning = false
+		clockTime.clockExistingTimer = false
+		timerPaused = false
 		StartButton.setTitle("Start", for: .normal)
 		clockRunning()
 		
