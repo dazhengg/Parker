@@ -29,6 +29,8 @@ class CountdownTimerViewController: UIViewController{
         super.viewDidLoad()
     //    let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
    //     self.view.addGestureRecognizer(rightSwipe)
+		
+		self.navigationItem.title = "Count Down Timer";
         if Time.existingTimer ?? false{
             if Time.timerPaused ?? false {
                 totalseconds = Time.totalSeconds ?? 0
