@@ -19,14 +19,12 @@ class InfoStore: UIViewController, UITextFieldDelegate{
     // number
    
  
-    @IBOutlet weak var act_name: UITextField!
+//    @IBOutlet weak var act_name: UITextField!
     @IBOutlet weak var act_num: UITextField!
     @IBOutlet weak var park_location: UITextView!
     
     override func viewDidLoad() {
-        let x_act = UserDefaults.standard.object(forKey: "act_name") as? String
-        self.act_name.text = x_act
-        print(x_act!)
+
         
         
         let x_num = UserDefaults.standard.object(forKey:"act_number") as? String
@@ -70,11 +68,7 @@ class InfoStore: UIViewController, UITextFieldDelegate{
             
         })
     }
-    @IBAction func actCheck(_ sender: Any) {
-        if User.userName == "" {
-           act_name.text = "You don't have an account set yet."
-        }
-    }
+
     
     @IBAction func numCheck(_ sender: Any) {
         if User.number == "" {
