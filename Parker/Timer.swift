@@ -85,7 +85,6 @@ class TimerViewController: UIViewController{
 		
 		
 		if  clockTime.clockExistingTimer ?? false{
-			ResetButton.isEnabled = true
 			if clockTime.clockTimerPaused ?? false { // if timer is paused
 				seconds = clockTime.clocksecends ?? 0
 				secondStr = clockTime.secondStr ?? 0
@@ -171,7 +170,7 @@ class TimerViewController: UIViewController{
     
     @objc func clockRunning() {
 		
-		if (!timerPaused){
+		if (!timerPaused &&  isTimerRunning){
         	seconds = seconds + 1
 			
 			secondStr = secondStr! + 1
@@ -210,7 +209,7 @@ class TimerViewController: UIViewController{
 			runTimer()
 			isTimerRunning = true
 			StartButton.setTitle("pause", for: .normal)
-			ResetButton.isEnabled = true
+			
 		}else if isTimerRunning { // if the timer is running, so user wants to pause it
 			timer.invalidate()
 			isTimerRunning = false
@@ -236,7 +235,7 @@ class TimerViewController: UIViewController{
         //Timepresent.text = timeString(time: TimeInterval(seconds))
         isTimerRunning = false
 		StartButton.setTitle("start", for: .normal)
-		ResetButton.isEnabled = false
+		clockRunning()
 		
     }
 	
