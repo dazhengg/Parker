@@ -3,7 +3,7 @@
 In order to install Parker correctly the Podfile must be installed along with Firebase. 
 if the following pods in the podfile have not been installed 
 1. pod install (If Firebase has never been used before, configure as follows https://firebase.google.com/docs/ios/setup)
-ELSE.
+ELSE do 2. and 3. 
  1. pod update 
  2. pod install 
 
