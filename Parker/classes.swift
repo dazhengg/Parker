@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 // Usage:
 // Getting: latitude = Location.latitude
 // Setting: Location.latitude = latitude
@@ -203,8 +204,22 @@ struct clockTime {
 	
 } // end of clock time
 
-
-
-
+struct ImageStorage {
+	
+	static var ParkingImage: UIImage? {
+		get {
+			guard let data = UserDefaults.standard.object(forKey: "ParkingImage") else{
+				return nil
+			}
+			return UIImage(data:data as! Data)
+		}
+		
+		set (ParkingImage) {
+			
+			UserDefaults.standard.set(ParkingImage!.jpegData(compressionQuality:0.5), forKey: "ParkingImage")
+			print("Saving ParkingImage as \(UserDefaults.standard.synchronize())")
+		}
+	}
+}
 
 

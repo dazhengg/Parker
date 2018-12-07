@@ -20,6 +20,9 @@ class takepictureViewController: UIViewController, UINavigationControllerDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		if let previousImage = ImageStorage.ParkingImage{
+			imagetake.image = previousImage
+		}
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         downSwipe.direction = .down
         self.view.addGestureRecognizer(downSwipe)
@@ -35,10 +38,10 @@ class takepictureViewController: UIViewController, UINavigationControllerDelegat
     
     @IBAction func takepicture(_ sender: UIButton) {
     
-    guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            selectImageFrom(.photoLibrary)
-            return
-        }
+		guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+				selectImageFrom(.photoLibrary)
+				return
+		}
         selectImageFrom(.camera)
     }
     
@@ -85,12 +88,10 @@ class takepictureViewController: UIViewController, UINavigationControllerDelegat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    
-    
 }
+
+
+
 extension takepictureViewController: UIImagePickerControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
@@ -100,5 +101,7 @@ extension takepictureViewController: UIImagePickerControllerDelegate{
             return
         }
         imagetake.image = selectedImage
+		ImageStorage.ParkingImage = selectedImage
+		print("pass")
     }
 }
