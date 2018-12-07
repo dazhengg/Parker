@@ -38,8 +38,8 @@ class ChatController: JSQMessagesViewController {
         
         let defaults = UserDefaults.standard
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm"
+        //let formatter = DateFormatter()
+       // formatter.dateFormat = "MMM d, h:mm a"
         
         
    
@@ -47,16 +47,16 @@ class ChatController: JSQMessagesViewController {
         {
             senderId = id
            
-            name += " " + formatter.string(from: Date())
+            //name += " " + formatter.string(from: Date())
             senderDisplayName = name
             
             let currTime    = name
             let currTimeArr = currTime.components(separatedBy: " ") // :[String] type
             
             let named    = currTimeArr[0]
-            let timed = currTimeArr[1]
+       //     let timed = currTimeArr[1]
 
-                let fix_time = named + " " + timed
+                let fix_time = named //+ " " + timed
             senderDisplayName = fix_time
         }
             
@@ -96,10 +96,18 @@ class ChatController: JSQMessagesViewController {
                 let id          = data["sender_id"],
                 let name        = data["name"],
                 let text        = data["text"],
+				let dateString  = data["date"],
                 !text.isEmpty
             {
-                if let message = JSQMessage(senderId: id, displayName: name, text: text)
-                {
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZ"
+				let date = dateFormatter.date(from: dateString)
+				
+				if let message = JSQMessage(senderId: id, senderDisplayName: name, date: date, text: text)
+				
+				{
+					
+					
                     self?.messages.append(message)
                     
                     self?.finishReceivingMessage()
@@ -107,6 +115,8 @@ class ChatController: JSQMessagesViewController {
             }
         })
     }
+	
+	
     @objc func showDisplayNameDialog()
     {
         let defaults = UserDefaults.standard
@@ -158,10 +168,35 @@ class ChatController: JSQMessagesViewController {
         }))
         
         present(alert, animated: true, completion: nil)
-    }
+    } // end of display name
 
     
-    
+	
+	// Date
+	override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
+		let i = indexPath.item
+		let message = messages[i]
+		let prevMessage: JSQMessage? = (i - 1 > 0) ? messages[i - 1] : nil
+		
+		guard let previousMessage = prevMessage else { return kJSQMessagesCollectionViewCellLabelHeightDefault }
+		
+		// Set a condition for stacking messages here
+		if previousMessage.date != message.date
+			&& message.date.timeIntervalSince(previousMessage.date) / 60 > 1 {
+			return kJSQMessagesCollectionViewCellLabelHeightDefault
+		}
+		
+		return 0.0
+	}
+	
+	override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "MMM d, h:mm a"
+
+		let dateString = formatter.string(from:messages[indexPath.item].date)
+		return NSAttributedString(string:dateString)
+	}
+	
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData!
     {
         return messages[indexPath.item]
@@ -196,9 +231,11 @@ class ChatController: JSQMessagesViewController {
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!)
     {
         let ref = Constants.refs.databaseChats.childByAutoId()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm"
-        let message = ["sender_id": senderId, "name": senderDisplayName, "text": text+"  "+formatter.string(from: Date())]
+		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+		let dateString: String! = formatter.string(from:date)
+		//print("data String = ",dateString)
+		let message = ["sender_id": senderId, "name": senderDisplayName, "text": text, "date": dateString ]
         
         ref.setValue(message)
         
