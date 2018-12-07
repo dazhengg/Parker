@@ -29,11 +29,16 @@ class InfoStore: UIViewController, UITextFieldDelegate{
         
         let x_num = UserDefaults.standard.object(forKey:"act_number") as? String
         self.act_num.text = x_num
+        if x_num != nil {
         print(x_num! )
+        } else {
+            act_num.text = "Plate not entered."
+        }
         
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: Location.latitude ?? 0, longitude: Location.longitude ?? 0)
-        geoCoder.reverseGeocodeLocation(location, completionHandler:
+        if Location.latitude != nil && Location.longitude != nil {
+            geoCoder.reverseGeocodeLocation(location, completionHandler:
             {
                 placemarks, error -> Void in
                 
@@ -66,7 +71,10 @@ class InfoStore: UIViewController, UITextFieldDelegate{
                 }
              
             
-        })
+            })
+        } else {
+            self.park_location.text = " "
+        }
     }
 
     

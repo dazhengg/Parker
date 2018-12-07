@@ -5,7 +5,7 @@ import Foundation
 import JSQMessagesViewController
 import Firebase
 
-
+// The following class handles messaging and real time database storage for Firebase
 class ChatController: JSQMessagesViewController {
  
 
@@ -113,10 +113,16 @@ class ChatController: JSQMessagesViewController {
         let alert = UIAlertController(title: "Your Display Name", message: "Before you can chat, please choose a display name. Others will see this name when you send chat messages. Change your display name again by tapping the navigation bar. Only one word names will be accepted i.e Bobby, not Bob the Builder", preferredStyle: .alert)
         
         alert.addTextField { textField in
+            let whitespace = NSCharacterSet.whitespaces
             
-            if let name = defaults.string(forKey: "jsq_name") // can you do this part zekai too tired :-( can't think anymore
+          
+        
+            
+            
+            if let name = defaults.string(forKey: "jsq_name")
             {
                 textField.text = name
+                
             }
             else
             {
@@ -126,14 +132,24 @@ class ChatController: JSQMessagesViewController {
         }
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self, weak alert] _ in
+         
+          
             
-            if let textField = alert?.textFields?[0], !textField.text!.isEmpty {
+            if let textField = alert?.textFields?[0], !textField.text!.isEmpty && textField.text?.range(of: " ") == nil {
                 
                 self?.senderDisplayName = textField.text
                 
                 self?.title = "Chat: \(self!.senderDisplayName!)"
                 
                 defaults.set(textField.text, forKey: "jsq_name")
+                defaults.synchronize()
+            
+            } else {
+                self?.senderDisplayName = "Bob"
+                let textField = alert?.textFields?[0]
+                self?.title = "Chat: \(self!.senderDisplayName!)"
+                
+                defaults.set(textField?.text, forKey: "jsq_name")
                 defaults.synchronize()
             }
         }))
@@ -182,6 +198,7 @@ class ChatController: JSQMessagesViewController {
         let message = ["sender_id": senderId, "name": senderDisplayName, "text": text+"  "+formatter.string(from: Date())]
         
         ref.setValue(message)
+        
         
         finishSendingMessage()
     }
