@@ -28,13 +28,13 @@ class InfoStore: UIViewController, UITextFieldDelegate{
 
         
         
-        let x_num = UserDefaults.standard.object(forKey:"act_number") as? String
-        self.act_num.text = x_num
-        if x_num != nil {
-        print(x_num! )
-        } else {
-            act_num.text = "Plate not entered."
-        }
+//        let x_num = UserDefaults.standard.object(forKey:"act_number") as? String
+//        self.act_num.text = x_num
+//        if x_num != nil {
+//        print(x_num! )
+//        } else {
+//            act_num.text = "Plate not entered."
+//        }
 		
 		
 		
@@ -76,7 +76,7 @@ class InfoStore: UIViewController, UITextFieldDelegate{
 				if let level = Storage.level {
 					print(level)
 					if level != 0{
-						self.park_location.text += "\n" + "at level " + String(level)  + "\n"
+						self.park_location.text += "\n" + "level " + String(level)  + "\n"
 					}
 				}
 				

@@ -34,14 +34,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNm-qH-Z5m">
-                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="Title" id="a1g-Ke-5zK"/>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HOD-9y-JbF">
-                                <rect key="frame" x="147" y="277" width="177" height="30"/>
+                                <rect key="frame" x="147" y="233" width="177" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plate Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VmJ-Qe-WVr">
-                                <rect key="frame" x="54" y="285" width="77" height="15"/>
+                                <rect key="frame" x="54" y="241" width="77" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -375,25 +375,13 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="68Y-su-pmv">
-                            <rect key="frame" x="148.66666666666666" y="7" width="116.99999999999997" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Leaving / Parking"/>
-                            <connections>
-                                <segue destination="jEB-uS-dqg" kind="show" id="YDF-no-chW"/>
-                            </connections>
-                        </button>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="VFR-vn-o12">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fhk-Zv-f72">
-                                <rect key="frame" x="300" y="7" width="94" height="30"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="cgq-ck-x73">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="68Y-su-pmv">
+                                <rect key="frame" x="277" y="7" width="117" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Lfx-eA-Ufx"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Rgo-Yz-zIJ"/>
-                                </constraints>
-                                <state key="normal" title="Plate Number"/>
+                                <state key="normal" title="Leaving / Parking"/>
                                 <connections>
-                                    <segue destination="jrd-2q-ED6" kind="show" id="YVF-Hs-jZI"/>
+                                    <segue destination="jEB-uS-dqg" kind="show" id="YDF-no-chW"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -475,14 +463,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parking Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nT8-lK-qDw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parking Info:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nT8-lK-qDw">
                                 <rect key="frame" x="42" y="110" width="139" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NGZ-MF-t3h">
-                                <rect key="frame" x="42" y="214" width="275" height="206"/>
+                                <rect key="frame" x="40" y="145" width="277" height="206"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="206" id="Amy-YI-Xde"/>
@@ -490,18 +478,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jv8-Le-Epg">
-                                <rect key="frame" x="42" y="154" width="280" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="numCheck:" destination="TfI-01-T9b" eventType="editingDidEnd" id="hZt-Cx-giG"/>
-                                    <action selector="numShow:" destination="TfI-01-T9b" eventType="editingDidEnd" id="1fx-ce-BqM"/>
-                                </connections>
-                            </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UIN-O1-TMp">
-                                <rect key="frame" x="73" y="419" width="244" height="276"/>
+                                <rect key="frame" x="73" y="350" width="244" height="276"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="276" id="VS9-On-lR4"/>
                                 </constraints>
@@ -509,23 +487,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="NGZ-MF-t3h" firstAttribute="top" secondItem="nT8-lK-qDw" secondAttribute="bottom" constant="20" id="8uN-nR-o1X"/>
                             <constraint firstItem="hrB-3B-dNn" firstAttribute="trailing" secondItem="UIN-O1-TMp" secondAttribute="trailing" constant="97" id="GEm-a1-PTy"/>
                             <constraint firstItem="hrB-3B-dNn" firstAttribute="trailing" secondItem="NGZ-MF-t3h" secondAttribute="trailing" constant="97" id="LLq-Z9-PUu"/>
-                            <constraint firstItem="NGZ-MF-t3h" firstAttribute="leading" secondItem="hrB-3B-dNn" secondAttribute="leading" constant="42" id="MPn-y2-WFG"/>
+                            <constraint firstItem="NGZ-MF-t3h" firstAttribute="leading" secondItem="hrB-3B-dNn" secondAttribute="leading" constant="40" id="MPn-y2-WFG"/>
                             <constraint firstItem="UIN-O1-TMp" firstAttribute="leading" secondItem="hrB-3B-dNn" secondAttribute="leading" constant="73" id="Sgf-he-SMr"/>
-                            <constraint firstItem="hrB-3B-dNn" firstAttribute="trailing" secondItem="Jv8-Le-Epg" secondAttribute="trailing" constant="92" id="VCA-2e-LHz"/>
                             <constraint firstItem="nT8-lK-qDw" firstAttribute="leading" secondItem="hrB-3B-dNn" secondAttribute="leading" constant="42" id="Xnn-Qt-udf"/>
-                            <constraint firstItem="Jv8-Le-Epg" firstAttribute="leading" secondItem="hrB-3B-dNn" secondAttribute="leading" constant="42" id="gYY-Yf-jha"/>
-                            <constraint firstItem="NGZ-MF-t3h" firstAttribute="top" secondItem="Jv8-Le-Epg" secondAttribute="bottom" constant="30" id="hWE-04-szM"/>
                             <constraint firstItem="hrB-3B-dNn" firstAttribute="trailing" secondItem="nT8-lK-qDw" secondAttribute="trailing" constant="233" id="ixM-B7-Z9t"/>
-                            <constraint firstItem="Jv8-Le-Epg" firstAttribute="top" secondItem="nT8-lK-qDw" secondAttribute="bottom" constant="29" id="m3Z-69-rAs"/>
                             <constraint firstItem="UIN-O1-TMp" firstAttribute="top" secondItem="NGZ-MF-t3h" secondAttribute="bottom" constant="-1" id="o7v-rf-Mb5"/>
                             <constraint firstItem="nT8-lK-qDw" firstAttribute="top" secondItem="hrB-3B-dNn" secondAttribute="top" constant="46" id="zsq-FC-AeX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hrB-3B-dNn"/>
                     </view>
                     <connections>
-                        <outlet property="act_num" destination="Jv8-Le-Epg" id="sD1-OM-8KI"/>
                         <outlet property="park_image" destination="UIN-O1-TMp" id="lrW-2D-t9N"/>
                         <outlet property="park_location" destination="NGZ-MF-t3h" id="6Ga-hg-ove"/>
                     </connections>
