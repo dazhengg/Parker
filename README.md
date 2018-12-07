@@ -1,4 +1,13 @@
 # Parker
+# Disclaimer 
+In order to install Parker correctly the Podfile must be installed along with Firebase. 
+if the following pods in the podfile have not been installed 
+1) pod install (If Firebase has never been used before, configure as follows https://firebase.google.com/docs/ios/setup)
+else 
+1) pod update 
+2) pod install 
+
+
 # Group Member
 Lihang Pan, Haoran Zhang, Zekai Zhao, David Zheng
 
@@ -6,23 +15,24 @@ Lihang Pan, Haoran Zhang, Zekai Zhao, David Zheng
 Please see the GeneralDesign.HEIC under the root directory
 
 # Current List of Third Party Library
-SVProgressHUD 
+SVProgressHUD, Firebase, JQSMessaging  
 
 # Server Support
-Currently unclear, seems like we won't use server this time
+Firebase used to provide realtime database storage and synchornization. 
 
 # Models
-TImer Model, Map Model, and camera
+Timer Model, Map Model, and camera
 
 # Trello Board
 Trello board is set up.
 
 # ViewController 
 > Main View Controller(VC1)
-> > 1. VC1 to VC2 : An info button on the upper left corner of the screen
-> > 2. VC1 to VC3: A setting button on the upper left corner of the screen
+> > 1. VC1 to VC2 : An info button on the upper middle corner of the screen
+> > 2. VC1 to VC3: A setting button on the upper right corner of the screen
 > > 3. VC1 to VC4: Swipe left
 > > 4. VC1 to Camera: Swipe right
+> > 5. VC1 to ChatVC: Chat capability (along with real time database storage) 
 
 > Info View Controller(VC2)
 > > 1. VC2 to VC1 : Back Button on the Navigation Bar
@@ -41,6 +51,7 @@ Trello board is set up.
 Week1: VC1, Camera  
 Week2: VC2 and VC3  
 Week3: VC4 and VC5  
+Final: ChatVC/ Firebase Storage
 
 # Testing Plan
  The hard part for this App so far is the auto recognition of the location the user parked. If the user parked underground or parked in a parking structure, we need to recogize it and ask the user to enter the level they parked. We would like our users to test out this feature.
