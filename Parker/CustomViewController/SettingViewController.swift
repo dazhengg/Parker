@@ -2,7 +2,7 @@
 //  SettingViewController.swift
 //  Parker
 //
-//  Created by Haoran Zhang on 11/17/18.
+//  Created by David Zheng on 11/17/18.
 //  Copyright © 2018 Zekai Zhao. All rights reserved.
 //
 
