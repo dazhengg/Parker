@@ -198,6 +198,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	@IBAction func locateButton(_ sender: Any) {
 		locatButtonPressed = !locatButtonPressed
 		if(locatButtonPressed){
+			Storage.parkSinceTime = Date() // record the parking since time
 			let userLocation = locationManager.location! as CLLocation
 			carLocationPin.coordinate = userLocation.coordinate
 			carLocationPin.imageName = "car_parking_location"
@@ -207,35 +208,6 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			
 			// remove the layout(navigation routine) after press the locate button
 			map.removeOverlays(map.overlays)
-			/*
-			let reverseLocationManager = CLGeocoder()
-			reverseLocationManager.reverseGeocodeLocation(userLocation, completionHandler: {(placemarks, error) -> Void in
-			print(userLocation)
-			
-			
-			if error != nil {
-			print("Reverse geocoder failed with error" + error!.localizedDescription)
-			return
-			}
-			
-			if placemarks != nil {
-			guard let locationArray = placemarks else {
-			print("Fatal error occured")
-			return
-			}
-			for pm in locationArray {
-			print("pm name is \(pm.name ?? "pm name not available")")
-			print("pm subLocality name is \(pm.subLocality ?? "subLocality name not available")")
-			print("pm subThoroughfare name is \(pm.subThoroughfare ?? "subThoroughfare name not available")")
-			//let pm = locationArray[0]
-			}
-			
-			}
-			else {
-			print("Problem with the data received from geocoder")
-			}
-			})*/
-			
 			
 			let placesClient = GMSPlacesClient.shared()
 			placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
@@ -249,7 +221,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 						let place = likelihood.place
 						//if place.name.contains("Sorrento") {
 						if place.name.contains("Parking Structure") ||
-							place.name.contains("Garage"){
+							place.name.contains("Garage"){ // if user is parking in a praking structure
 							let alertController = UIAlertController(title: "We detected you are in a parking structure", message: nil, preferredStyle: .alert)
 							alertController.addTextField(configurationHandler: self.levelTextFieldConfig)
 							let actionConfirm = UIAlertAction(title: "Confirm",style: .default, handler: { (action) in

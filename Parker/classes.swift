@@ -49,6 +49,17 @@ struct Storage {
 		}
 	}
 	
+	
+	static var parkSinceTime: Date? {
+		get {
+			return UserDefaults.standard.object(forKey: "parkSinceTime") as? Date
+		}
+		
+		set (parkSinceTime) {
+			UserDefaults.standard.set(parkSinceTime, forKey: "parkSinceTime")
+			print("Saving parkSinceTime as \(UserDefaults.standard.synchronize())")
+		}
+	}
 } // end storage
 
 struct User {

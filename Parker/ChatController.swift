@@ -25,13 +25,16 @@ class ChatController: JSQMessagesViewController {
     
     }
     
-  
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		self.navigationController?.navigationBar.isTranslucent = true
+	}
   
   
     
     override func viewWillAppear(_ animated: Bool) {
-
-       
+		
+		self.navigationController?.navigationBar.isTranslucent = false
         
         let defaults = UserDefaults.standard
         
@@ -85,7 +88,7 @@ class ChatController: JSQMessagesViewController {
         
         super.viewDidAppear(animated)
         
-        let query = Constants.refs.databaseChats.queryLimited(toLast: 10)
+        let query = Constants.refs.databaseChats.queryLimited(toLast: 15)
         
         _ = query.observe(.childAdded, with: { [weak self] snapshot in
             

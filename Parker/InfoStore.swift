@@ -22,7 +22,8 @@ class InfoStore: UIViewController, UITextFieldDelegate{
 //    @IBOutlet weak var act_name: UITextField!
     @IBOutlet weak var act_num: UITextField!
     @IBOutlet weak var park_location: UITextView!
-    
+	@IBOutlet weak var park_image: UIImageView!
+	
     override func viewDidLoad() {
 
         
@@ -34,7 +35,9 @@ class InfoStore: UIViewController, UITextFieldDelegate{
         } else {
             act_num.text = "Plate not entered."
         }
-        
+		
+		
+		
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: Location.latitude ?? 0, longitude: Location.longitude ?? 0)
         if Location.latitude != nil && Location.longitude != nil {
@@ -45,12 +48,12 @@ class InfoStore: UIViewController, UITextFieldDelegate{
                 // Place details
                 guard let placeMark = placemarks!.first else { return }
                 
-               
+
                 
                 // Street address 123
                 if let street_num = placeMark.subThoroughfare {
                     print(street_num)
-                    self.park_location.text += street_num + "\n"
+                    self.park_location.text += "You are parking at" + "\n\n" + street_num + "\n"
                 }
                 
                 // Street David St
@@ -69,12 +72,29 @@ class InfoStore: UIViewController, UITextFieldDelegate{
                     print(zip)
                     self.park_location.text += zip + "\n"
                 }
+				
+				if let level = Storage.level {
+					print(level)
+					if level != 0{
+						self.park_location.text += "\n" + "at level " + String(level)  + "\n"
+					}
+				}
+				
+				if let parkSince = Storage.parkSinceTime{
+					let formatter = DateFormatter()
+					formatter.dateFormat = "MMM d, h:mm a"
+					self.park_location.text += "\nsince "+formatter.string(from: parkSince)
+				}
              
             
             })
         } else {
             self.park_location.text = " "
         }
+		
+		if let parkImage = ImageStorage.ParkingImage {
+			park_image.image = parkImage
+		}
     }
 
     
