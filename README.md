@@ -1,11 +1,13 @@
 # Parker
 # Disclaimer 
-In order to install Parker correctly the Podfile must be installed along with Firebase. 
+Note that with Xcode, you msut set the deveoper account and a unique bundle ID. Also, in order to install Parker correctly the Podfile must be installed along with Firebase. 
 if the following pods in the podfile have not been installed 
 1. pod install (If Firebase has never been used before, configure as follows https://firebase.google.com/docs/ios/setup)
-ELSE do 2. and 3. 
+ELSE do 2. and 3. In the event that there is a Firebase error the GoogleMaps must be downgraded to 5.20 (if GoogleMaps have been used with the computer before). 
  1. pod update 
  2. pod install 
+ 
+ 
 
 
 # Group Member
@@ -57,4 +59,5 @@ Final: ChatVC/ Firebase Storage
  The hard part for this App so far is the auto recognition of the location the user parked. If the user parked underground or parked in a parking structure, we need to recogize it and ask the user to enter the level they parked. We would like our users to test out this feature.
  
 # Future Plan
-1. Send Notification when no much time remaining
+1. Send Notification when no much time remaining (COMPLETE) 
+2. Chat room for user interaction of leavers and parkers. In addition we added a real time update of messages being sent. (COMPLETE) 
