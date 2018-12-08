@@ -24,7 +24,7 @@
 
 > David Zheng  
 > > 1. Features 7,8 
-> > 2. Firebase storage for real time databases. 
+> > 2. Firebase set up and use of Firebase storage for real time databases.
 
 All group members take part in the UI design and bug fix. Group members help each other to improve and create a very pleasant atmosphere. Only highlights are listed above.   
 
