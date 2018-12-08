@@ -13,17 +13,17 @@
 # Highlights for each group member
 > Zekai Zhao
 > > 1. Fundamental features 1,2,8   
-> >  2. Extraordianry maintenance of the App, Special thanks.  
+> > 2. Extraordianry maintenance of the App, Special thanks.  
 
 > Lihang Pan  
 > > 1. Features 3,4,5   
 
 > Haoran Zhang  
-> >1. Features 6,8    
-> >2. All the paperwork   
+> > 1. Features 6,8    
+> > 2. All the paperwork   
 
 > David Zheng  
-> >1.Features 7,8  
+> > 1.Features 7,8  
 
 All group members take part in the UI design and bug fix. Group members help each other to improve and create a very pleasant atmosphere. Only highlights are listed above.   
 
