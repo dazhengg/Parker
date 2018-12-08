@@ -23,7 +23,7 @@
 > >2. All the paperwork   
 
 > David Zheng  
-> > 1.Features 7,8  
+> >1.Features 7,8  
 
 All group members take part in the UI design and bug fix. Group members help each other to improve and create a very pleasant atmosphere. Only highlights are listed above.   
 
