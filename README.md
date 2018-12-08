@@ -3,7 +3,7 @@
 Note that with Xcode, you must set the deveoper account and a unique bundle ID. Also, in order to install Parker correctly the Podfile must be installed along with Firebase. 
 if the following pods in the podfile have not been installed 
 1. pod install (If Firebase has never been used before, configure as follows https://firebase.google.com/docs/ios/setup)
-ELSE do 2. and 3. In the event that there is a Firebase error the GoogleMaps must be downgraded to 5.20 (if GoogleMaps have been used with the computer before). 
+ELSE do 2. and 3. In the event that there is a Firebase error the GoogleMaps must be downgraded to 5.20 (if GoogleMaps have been used with the computer before). Note that this is not a code error but a Firebase and Googlemap error. Users have also found success using an older version of Firebase i.e 1.0 version down. 
  1. pod update 
  2. pod install 
  
