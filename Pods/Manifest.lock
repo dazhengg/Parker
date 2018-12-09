@@ -1,4 +1,5 @@
 PODS:
+  - Ahoy (2.0.0)
   - Firebase (5.14.0):
     - Firebase/Core (= 5.14.0)
   - Firebase/Auth (5.14.0):
@@ -91,6 +92,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - Ahoy (~> 2.0)
   - Firebase
   - Firebase/Auth
   - Firebase/Database
@@ -103,6 +105,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Ahoy
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -124,6 +127,7 @@ SPEC REPOS:
     - SVProgressHUD
 
 SPEC CHECKSUMS:
+  Ahoy: 8518277d1eb2ac5d867dd502cf8018385e9e33bf
   Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAuth: 4a5cc5fc2d1721e509e24699b93ebc3d94b1e195
@@ -144,6 +148,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 518d771957f650354562adc3903df777540be1fe
+PODFILE CHECKSUM: 7cfd996993af3230c7c3d8940c1d46f86bf40cdc
 
 COCOAPODS: 1.5.3

@@ -27,12 +27,20 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
+
+		
 		//make naviagtion bar transclucent
 		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		self.navigationController?.navigationBar.shadowImage = UIImage()
 		self.navigationController?.navigationBar.isTranslucent = true
 		self.navigationController?.view.backgroundColor = .clear
 		self.locationManager.requestWhenInUseAuthorization()
+		
+		if(!isAppAlreadyLaunchedOnce()){
+			let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+			let vb = storyboard.instantiateViewController(withIdentifier: "ParkerOnBoardViewController") as! ParkerOnBoardViewController
+			self.present(vb, animated: true, completion: nil)
+		}
 		
 		if CLLocationManager.locationServicesEnabled() {
 			self.locationManager.delegate = self
@@ -63,6 +71,19 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		rightSwipe.direction = .right
 		self.view.addGestureRecognizer(rightSwipe)
 		
+	}
+	
+	func isAppAlreadyLaunchedOnce()->Bool{
+		let defaults = UserDefaults.standard
+		
+		if let isAppAlreadyLaunchedOnce = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
+			print("App already launched : \(isAppAlreadyLaunchedOnce)")
+			return true
+		}else{
+			defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+			print("App launched first time")
+			return false
+		}
 	}
 	
 	

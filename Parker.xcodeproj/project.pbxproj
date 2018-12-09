@@ -20,6 +20,7 @@
 		BF247D71219645CA00948E85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF247D6F219645CA00948E85 /* Main.storyboard */; };
 		BF247D73219645CD00948E85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF247D72219645CD00948E85 /* Assets.xcassets */; };
 		BF247D76219645CD00948E85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF247D74219645CD00948E85 /* LaunchScreen.storyboard */; };
+		BF3643B221BD8D6700A4501E /* ParkerOnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3643B121BD8D6700A4501E /* ParkerOnBoardViewController.swift */; };
 		BF48A13721B8FF3500BF999A /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A13321B8FF3500BF999A /* ChatService.swift */; };
 		BF48A13821B8FF3500BF999A /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A13421B8FF3500BF999A /* ChatController.swift */; };
 		BF48A13A21B8FF3500BF999A /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF48A13621B8FF3500BF999A /* DatabaseRepresentation.swift */; };
@@ -43,6 +44,7 @@
 		BF247D72219645CD00948E85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF247D75219645CD00948E85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF247D77219645CD00948E85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF3643B121BD8D6700A4501E /* ParkerOnBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerOnBoardViewController.swift; sourceTree = "<group>"; };
 		BF48A13321B8FF3500BF999A /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		BF48A13421B8FF3500BF999A /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		BF48A13621B8FF3500BF999A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				045A1CC321A1020E004E46C7 /* Takepicture.swift */,
 				045A1CBF21A0EF6A004E46C7 /* Timer.swift */,
 				045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */,
+				BF3643B121BD8D6700A4501E /* ParkerOnBoardViewController.swift */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Parker/Pods-Parker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Ahoy/Ahoy.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
@@ -292,6 +296,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Ahoy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
@@ -319,6 +324,7 @@
 				BF48A13821B8FF3500BF999A /* ChatController.swift in Sources */,
 				6AF0803921AE69FA00F2E897 /* InfoStore.swift in Sources */,
 				BF247D6C219645CA00948E85 /* AppDelegate.swift in Sources */,
+				BF3643B221BD8D6700A4501E /* ParkerOnBoardViewController.swift in Sources */,
 				BF48A13721B8FF3500BF999A /* ChatService.swift in Sources */,
 				045A1CC421A1020E004E46C7 /* Takepicture.swift in Sources */,
 				6A9F0DFB21A0E0CB009436A1 /* SettingViewController.swift in Sources */,
