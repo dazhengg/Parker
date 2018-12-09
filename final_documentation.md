@@ -8,11 +8,12 @@
 5. Swipe right to set up the clock(count up timer) to record the time after the user left their cars.  
 6. Auto recognition when users are parking in a parking structure.   
 7. Chat rooms for people to communicate on a real time basis, useful when users are leaving their spaces.  
-8. Parking information storage
+8. Parking information storage.
+9. Introduaction view design and implement.
 
 # Highlights for each group member
 > Zekai Zhao
-> > 1. Fundamental features 1,2,8   
+> > 1. Fundamental features 1,2,8,9  
 > > 2. Extraordianry maintenance of the App, Special thanks.  
 
 > Lihang Pan  
