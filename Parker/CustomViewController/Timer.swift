@@ -85,6 +85,7 @@ class TimerViewController: UIViewController{
         self.view.addSubview(hourHandView)
 		
 		
+		// try to restoring the time data
 		if  clockTime.clockExistingTimer ?? false{
 			if clockTime.clockTimerPaused ?? false { // if timer is paused
 				seconds = clockTime.clocksecends ?? 0
@@ -98,18 +99,14 @@ class TimerViewController: UIViewController{
 			} else { // if timer is running
 				StartButton.setTitle("Pause", for: .normal)
 				let now = Date()
-				print("now in clock is ", now)
-				print("timeSwiped  in clock is ", clockTime.clockTimeSwiped!)
 				let timeDiff = now.timeIntervalSince(clockTime.clockTimeSwiped ?? Date())
-				print("time diff in clock is ", timeDiff)
 				seconds = (clockTime.clocksecends ?? 0)  + Int(round(timeDiff))
-				
-				secondStr = clockTime.secondStr ?? 0 + Int(round(timeDiff))
-				minitStr = clockTime.minitStr ?? 0 + (secondStr ?? 0) / 60
-				hourStr = clockTime.hourStr ?? 0 + (minitStr ?? 0) / 60
-				secondStr = secondStr ?? 0 % 60
-				minitStr = minitStr ?? 0 % 60
-				hourStr = hourStr ?? 0 % 60
+				secondStr = (clockTime.secondStr ?? 0) + Int(round(timeDiff))
+				minitStr = (clockTime.minitStr ?? 0) + (secondStr ?? 0) / 60
+				hourStr = (clockTime.hourStr ?? 0) + (minitStr ?? 0) / 60
+				secondStr = (secondStr ?? 0) % 60
+				minitStr = (minitStr ?? 0) % 60
+				hourStr = (hourStr ?? 0) % 60
 		
 				
 				timerPaused = false
@@ -120,14 +117,9 @@ class TimerViewController: UIViewController{
 			}
 		}
        
-        /*let link = CADisplayLink(target: self, selector: #selector(TimerViewController.clockRunning))
-        link.add(to: RunLoop.main, forMode: RunLoop.Mode.default)*/
-        //link.add(to: RunLoop.main, forMode: .RunLoop.Mode.default)
-        
+		//add swipe gestures
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-        //upSwipe.direction = .up
         self.view.addGestureRecognizer(rightSwipe)
-        
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
         leftSwipe.direction = .left
         self.view.addGestureRecognizer(leftSwipe)
@@ -139,38 +131,31 @@ class TimerViewController: UIViewController{
                 
             case .left:
 				dismiss(animated: false)
-				//store the time data
+				//store the time data when siwped
 				clockTime.secondStr = secondStr
 				clockTime.minitStr = minitStr
 				clockTime.hourStr = hourStr
 				clockTime.clocksecends = seconds
 				clockTime.clockTimerPaused = timerPaused
 				clockTime.clockTimeSwiped = Date()
-			//	print("clockTimeSwiped in clock timer ", clockTime.clockTimeSwiped!)
+				timer.invalidate()
 
-               // let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                //let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-               // self.present(vb, animated: false, completion: nil)
-           /* case .left:
-                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vb = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
-                self.present(vb, animated: false, completion: nil)*/
             default:
                 break
-                
             }
         }
     }
     
     
 	@IBAction func backToMapVCButton(_ sender: Any) {
+		timer.invalidate()
 		self.dismiss(animated: false)
 	}
 	
     
     @objc func clockRunning() {
 		
-		if (!timerPaused &&  isTimerRunning){
+		if (!timerPaused &&  isTimerRunning){// if timer is not paused then calcuate the clock parameters
         	seconds = seconds + 1
 			
 			secondStr = secondStr! + 1
@@ -189,14 +174,18 @@ class TimerViewController: UIViewController{
         Timepresent.text = timeString(time: TimeInterval(seconds)) //This will update the label.
         
         // calculating angular for minute, hour and second
+		print("second string = ", secondStr)
         let secondAngle = CGFloat ( Double(secondStr!) * (Double.pi * 2.0 / 60) )
         secondHandView.transform = CGAffineTransform(rotationAngle: secondAngle)
+		print("secondAngle = ", secondAngle)
         
         let minuteAngle = CGFloat ( Double(minitStr!) * (Double.pi * 2.0 / 60) )
         minuteHandView.transform = CGAffineTransform(rotationAngle: minuteAngle)
-        
+        print("minAngle = ", minuteAngle)
+		
         let hourAngle = CGFloat ( Double(hourStr!) * (Double.pi * 2.0 / 12) )
         hourHandView.transform = CGAffineTransform(rotationAngle: hourAngle)
+		print("hourAngle = ", hourAngle)
     }
     
     
@@ -251,10 +240,7 @@ class TimerViewController: UIViewController{
         }
     }
 	
-    /*@objc func updateTimer() {
-        seconds += 1     //This will decrement(count down)the seconds.
-        Timepresent.text = timeString(time: TimeInterval(seconds)) //This will update the label.
-    }*/
+
     func timeString(time:TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
