@@ -46,7 +46,7 @@
 		BF48A13321B8FF3500BF999A /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		BF48A13421B8FF3500BF999A /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		BF48A13621B8FF3500BF999A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
-		BF48A13B21B8FFD700BF999A /* Bridging_Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = SOURCE_ROOT; };
+		BF48A13B21B8FFD700BF999A /* Bridging_Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bridging_Header.h; path = Parker/HelperFile/Bridging_Header.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +64,12 @@
 		6A9F0DFD21A0E0E3009436A1 /* CustomViewController */ = {
 			isa = PBXGroup;
 			children = (
+				BF48A13421B8FF3500BF999A /* ChatController.swift */,
 				BF247D6D219645CA00948E85 /* MapViewController.swift */,
 				6A9F0DFA21A0E0CB009436A1 /* SettingViewController.swift */,
+				045A1CC321A1020E004E46C7 /* Takepicture.swift */,
+				045A1CBF21A0EF6A004E46C7 /* Timer.swift */,
+				045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -92,23 +96,43 @@
 			isa = PBXGroup;
 			children = (
 				6A9F0DFD21A0E0E3009436A1 /* CustomViewController */,
-				BF247D6B219645CA00948E85 /* AppDelegate.swift */,
-				BF48A13421B8FF3500BF999A /* ChatController.swift */,
-				BF48A13321B8FF3500BF999A /* ChatService.swift */,
-				BF48A13621B8FF3500BF999A /* DatabaseRepresentation.swift */,
-				6AF0803721AE69FA00F2E897 /* InfoStore.swift */,
-				6A481DB421A39A7B00F6A942 /* classes.swift */,
-				BF247D6F219645CA00948E85 /* Main.storyboard */,
-				045A1CC321A1020E004E46C7 /* Takepicture.swift */,
-				045A1CBF21A0EF6A004E46C7 /* Timer.swift */,
-				045A1CC121A0EF89004E46C7 /* CountdownTimer.swift */,
-				BF48A13B21B8FFD700BF999A /* Bridging_Header.h */,
+				BF3643AF21BD859600A4501E /* HelperFile */,
+				BF3643AE21BD857100A4501E /* Storyboards */,
+				BF3643AD21BD854000A4501E /* Storage */,
 				BF247D72219645CD00948E85 /* Assets.xcassets */,
-				BF247D74219645CD00948E85 /* LaunchScreen.storyboard */,
-				6AF0803821AE69FA00F2E897 /* GoogleService-Info.plist */,
+				BF247D6B219645CA00948E85 /* AppDelegate.swift */,
 				BF247D77219645CD00948E85 /* Info.plist */,
+				6AF0803821AE69FA00F2E897 /* GoogleService-Info.plist */,
 			);
 			path = Parker;
+			sourceTree = "<group>";
+		};
+		BF3643AD21BD854000A4501E /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				6A481DB421A39A7B00F6A942 /* classes.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		BF3643AE21BD857100A4501E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				BF247D74219645CD00948E85 /* LaunchScreen.storyboard */,
+				BF247D6F219645CA00948E85 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		BF3643AF21BD859600A4501E /* HelperFile */ = {
+			isa = PBXGroup;
+			children = (
+				6AF0803721AE69FA00F2E897 /* InfoStore.swift */,
+				BF48A13621B8FF3500BF999A /* DatabaseRepresentation.swift */,
+				BF48A13B21B8FFD700BF999A /* Bridging_Header.h */,
+				BF48A13321B8FF3500BF999A /* ChatService.swift */,
+			);
+			path = HelperFile;
 			sourceTree = "<group>";
 		};
 		E397530B91E5F1D49F34768A /* Pods */ = {
@@ -447,13 +471,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NUGR87PYTP;
+				DEVELOPMENT_TEAM = J9G653786W;
 				INFOPLIST_FILE = "$(SRCROOT)/Parker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = paulzhang;
+				PRODUCT_BUNDLE_IDENTIFIER = Parker189e;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -467,13 +491,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NUGR87PYTP;
+				DEVELOPMENT_TEAM = J9G653786W;
 				INFOPLIST_FILE = "$(SRCROOT)/Parker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = paulzhang;
+				PRODUCT_BUNDLE_IDENTIFIER = Parker189e;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
