@@ -159,14 +159,14 @@ class TimerViewController: UIViewController{
                 break
                 
             }
-            
-            
-            
         }
     }
     
     
-    
+	@IBAction func backToMapVCButton(_ sender: Any) {
+		self.dismiss(animated: false)
+	}
+	
     
     @objc func clockRunning() {
 		

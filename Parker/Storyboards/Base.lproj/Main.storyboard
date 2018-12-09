@@ -115,6 +115,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5L-TF-oIn">
+                                <rect key="frame" x="374" y="34" width="30" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="5vT-Nr-i3a"/>
+                                    <constraint firstAttribute="width" constant="30" id="JrM-y2-ej1"/>
+                                </constraints>
+                                <state key="normal" image="RightBackIcon"/>
+                                <connections>
+                                    <action selector="backToMapVCButton:" destination="YRb-C5-TeS" eventType="touchUpInside" id="EZP-uM-8Gd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -124,7 +135,9 @@
                             <constraint firstItem="DPn-f4-WrV" firstAttribute="trailing" secondItem="WtI-0f-Rqr" secondAttribute="trailing" constant="20" id="7wh-ke-hYr"/>
                             <constraint firstItem="DPn-f4-WrV" firstAttribute="trailing" secondItem="RIz-ev-3tE" secondAttribute="trailing" constant="73" id="DHd-wn-CwI"/>
                             <constraint firstItem="AVN-dh-tmN" firstAttribute="top" secondItem="RIz-ev-3tE" secondAttribute="bottom" constant="161.5" id="THS-LC-tCo"/>
+                            <constraint firstItem="a5L-TF-oIn" firstAttribute="top" secondItem="DPn-f4-WrV" secondAttribute="top" constant="14" id="ayY-F5-UDR"/>
                             <constraint firstItem="DPn-f4-WrV" firstAttribute="bottom" secondItem="WtI-0f-Rqr" secondAttribute="bottom" constant="104" id="eEQ-MH-q2t"/>
+                            <constraint firstItem="DPn-f4-WrV" firstAttribute="trailing" secondItem="a5L-TF-oIn" secondAttribute="trailing" constant="10" id="kge-9r-RyC"/>
                             <constraint firstItem="RIz-ev-3tE" firstAttribute="leading" secondItem="DPn-f4-WrV" secondAttribute="leading" constant="79" id="vya-rM-jCJ"/>
                             <constraint firstItem="WtI-0f-Rqr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AVN-dh-tmN" secondAttribute="trailing" constant="100" id="wpI-c3-lho"/>
                         </constraints>
@@ -138,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yM-nm-npG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1626.0869565217392" y="-551.11607142857144"/>
+            <point key="canvasLocation" x="1626.0869565217392" y="-551.9021739130435"/>
         </scene>
         <!--CountdownTimerViewController-->
         <scene sceneID="8El-kB-5Zx">
@@ -525,6 +538,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="RightBackIcon" width="720" height="720"/>
         <image name="find_car" width="288" height="288"/>
         <image name="location button" width="288" height="288"/>
         <image name="round_near_me_black_24dp" width="48" height="48"/>
