@@ -7,9 +7,7 @@ import Firebase
 
 // The following class handles messaging and real time database storage for Firebase
 class ChatController: JSQMessagesViewController {
- 
-
-    
+	
     var messages = [JSQMessage]()
     
     lazy var outgoingBubble: JSQMessagesBubbleImage = {
@@ -37,27 +35,13 @@ class ChatController: JSQMessagesViewController {
 		self.navigationController?.navigationBar.isTranslucent = false
         
         let defaults = UserDefaults.standard
-        
-        //let formatter = DateFormatter()
-       // formatter.dateFormat = "MMM d, h:mm a"
-        
+		
         
    
-        if let id = defaults.string(forKey: "jsq_id"), var name = defaults.string(forKey: "jsq_name")
+        if let id = defaults.string(forKey: "jsq_id"), let name = defaults.string(forKey: "jsq_name")
         {
             senderId = id
-           
-            //name += " " + formatter.string(from: Date())
             senderDisplayName = name
-            
-            let currTime    = name
-            let currTimeArr = currTime.components(separatedBy: " ") // :[String] type
-            
-            let named    = currTimeArr[0]
-       //     let timed = currTimeArr[1]
-
-                let fix_time = named //+ " " + timed
-            senderDisplayName = fix_time
         }
             
         else
@@ -91,7 +75,7 @@ class ChatController: JSQMessagesViewController {
         let query = Constants.refs.databaseChats.queryLimited(toLast: 15)
         
         _ = query.observe(.childAdded, with: { [weak self] snapshot in
-            
+            //retrieve data from firebase
             if  let data        = snapshot.value as? [String: String],
                 let id          = data["sender_id"],
                 let name        = data["name"],
@@ -106,10 +90,7 @@ class ChatController: JSQMessagesViewController {
 				if let message = JSQMessage(senderId: id, senderDisplayName: name, date: date, text: text)
 				
 				{
-					
-					
                     self?.messages.append(message)
-                    
                     self?.finishReceivingMessage()
                 }
             }
@@ -234,9 +215,8 @@ class ChatController: JSQMessagesViewController {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 		let dateString: String! = formatter.string(from:date)
-		//print("data String = ",dateString)
 		let message = ["sender_id": senderId, "name": senderDisplayName, "text": text, "date": dateString ]
-        
+        // send message to firebase
         ref.setValue(message)
         
         

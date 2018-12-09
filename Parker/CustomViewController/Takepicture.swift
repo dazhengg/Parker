@@ -27,12 +27,11 @@ class takepictureViewController: UIViewController, UINavigationControllerDelegat
         downSwipe.direction = .down
         self.view.addGestureRecognizer(downSwipe)
     }
+	
+	
     @objc func handleSwipe(sender: UISwipeGestureRecognizer){
         if sender.state == .ended{
             dismiss(animated: true)
-          //  let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-           // let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-          //  self.present(vb, animated: false, completion: nil)
         }
     }
     

@@ -25,6 +25,7 @@ class ParkerPresenter: BasePresenter {
 	
 	override init() {
 		super.init()
+		// init slides
 		model = [
 			OnboardingSlide(titleText: "Before You Go",
 							bodyText: "Since our app implemented several hidden gestures, we want to let you know so you can have a wondeful parking experience.",
@@ -39,7 +40,8 @@ class ParkerPresenter: BasePresenter {
 							bodyText: "Swipe up to take a picture for your car or bike, and you will never miss where you parked.",
 							image: #imageLiteral(resourceName: "SwipeUpToShowCamera "))
 		]
-		doneButtonColor = .black//UIColor(red: 255/255, green: 78/255, blue: 73/255, alpha: 1)
+		// init text setting
+		doneButtonColor = .black
 		doneButtonTextColor = .white
 		cellBackgroundColor = .gray
 		textColor = .white

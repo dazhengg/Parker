@@ -27,8 +27,6 @@ class CountdownTimerViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    //    let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(sender:)))
-   //     self.view.addGestureRecognizer(rightSwipe)
 		
 		self.navigationItem.title = "Count Down Timer";
         if Time.existingTimer ?? false{
@@ -52,16 +50,6 @@ class CountdownTimerViewController: UIViewController{
         }
     }
     
-//    @objc func handleSwipe(sender: UISwipeGestureRecognizer){
-//        if sender.state == .ended{
-//            Time.totalSeconds = totalseconds
-//            Time.timeSwiped = Date()
-//			dismiss(animated: false)
-//         //   let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//          //  let vb = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-//          //  self.present(vb, animated: false, completion: nil)
-//        }
-//    }
 	
     @IBAction func start(_ sender: UIButton) {
         Time.existingTimer = true

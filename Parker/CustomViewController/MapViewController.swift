@@ -34,20 +34,26 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		self.navigationController?.navigationBar.shadowImage = UIImage()
 		self.navigationController?.navigationBar.isTranslucent = true
 		self.navigationController?.view.backgroundColor = .clear
-		self.locationManager.requestWhenInUseAuthorization()
+
 		
+		// check if the app is first time lauched
+		// if it is, then show the introduction view
 		if(!isAppAlreadyLaunchedOnce()){
 			let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 			let vb = storyboard.instantiateViewController(withIdentifier: "ParkerOnBoardViewController") as! ParkerOnBoardViewController
 			self.present(vb, animated: true, completion: nil)
 		}
 		
+		// ask for navigation auth
+		self.locationManager.requestWhenInUseAuthorization()
 		if CLLocationManager.locationServicesEnabled() {
 			self.locationManager.delegate = self
 			self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 			self.locationManager.startUpdatingLocation()
 		}
 		
+		
+		// retrieve the parking info from storage
 		if let carParkingLatitude = Location.latitude {
 			if let carParkingLongtitude = Location.longitude{
 				let userLocation = CLLocation(latitude: carParkingLatitude, longitude: carParkingLongtitude)
@@ -73,6 +79,8 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		
 	}
 	
+	
+	// function checks if the app is first time launched
 	func isAppAlreadyLaunchedOnce()->Bool{
 		let defaults = UserDefaults.standard
 		
@@ -91,20 +99,17 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		if sender.state == .ended{
 			switch sender.direction{
 				
-			case .up:
+			case .up: // swipe up to the camera view
 				let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 				let vb = storyboard.instantiateViewController(withIdentifier: "takepictureViewController") as! takepictureViewController
 				self.present(vb, animated: true, completion: nil)
 				break
-			case .right:
+			case .right: // swipe right to the clock timer view
 				let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 				let vb = storyboard.instantiateViewController(withIdentifier: "TimerViewController") as! TimerViewController
 				self.present(vb, animated: false, completion: nil)
 				break
-			case .left:
-			//	let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-			//	let vb = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
-			//	self.present(vb, animated: false, completion: nil)
+			case .left: // swipe left to the count down timer view
 				let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 				let vc = storyboard.instantiateViewController(withIdentifier: "CountdownTimerViewController") as! CountdownTimerViewController
 				if (navigationController != nil) {
@@ -113,8 +118,7 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 					print("Cannot find navigation controller.")
 				}
 				break
-				
-				
+
 			default:
 				break
 				
@@ -124,24 +128,19 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	
 	
 	
-	
-	
-	
-	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
 	
 	
-	
+	// two labels show the distance left and time left to the desitination
 	@IBOutlet weak var distanceLeftLabel: UILabel!
 	@IBOutlet weak var timeLeftLabel: UILabel!
 	
+	// make a navigation to the destination
 	func navigationToDestination(reRegion:Bool){
-		guard let currentLocationCoordinate = locationManager.location?.coordinate else{
-			return
-		}
+		guard let currentLocationCoordinate = locationManager.location?.coordinate else{return}
 		let sourcePlacemark = MKPlacemark(coordinate: currentLocationCoordinate)
 		let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
 		
@@ -172,14 +171,12 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			guard let primaryRoute = response.routes.first else {return}
 			self.map.removeOverlays(self.map.overlays)
 			self.map.addOverlay(primaryRoute.polyline)
-			//self.steps = primaryRoute.steps
 			self.navigationImageButton.setImage(UIImage(named: "cancel_find_car.png"), for: .normal)
 			self.dismissNavigation = true
 			let mdf = MKDistanceFormatter()
 			let dcf = DateComponentsFormatter()
 			mdf.units = .metric
 			dcf.unitsStyle = .full
-			//dcf.includesTimeRemainingPhrase = true
 			dcf.allowedUnits = [.minute]
 			self.distanceLeftLabel.text = mdf.string(fromDistance: primaryRoute.distance)
 			self.timeLeftLabel.text = dcf.string(from: primaryRoute.expectedTravelTime)
@@ -188,8 +185,6 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 				let center = CLLocationCoordinate2DMake((currentLocationCoordinate.latitude + carParkingLocation.latitude) * 0.5, (currentLocationCoordinate.longitude + carParkingLocation.longitude) * 0.5);
 				let viewRegion = MKCoordinateRegion(center: center, latitudinalMeters: primaryRoute.distance, longitudinalMeters: primaryRoute.distance)
 				self.map.setRegion(viewRegion, animated: true)
-				
-				
 			}
 		}
 	}
@@ -197,10 +192,9 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 	@IBAction func getDirection(_ sender: Any) {
 		// getting the start point of navigation,
 		// which is current location
-		if(!dismissNavigation){
+		if(!dismissNavigation){ // if user ask for navigation
 			navigationToDestination(reRegion:true)
-			
-		}else{
+		}else{ // if user ask for canceling navigation
 			self.navigationImageButton.setImage(UIImage(named: "find_car.png"), for: .normal)
 			self.dismissNavigation = false
 			map.removeOverlays(map.overlays)
@@ -210,12 +204,14 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 		
 	}
 	
+	// reregion to the current location
 	@IBAction func nearMeButton(_ sender: Any) {
 		guard let currentCoordinate = locationManager.location?.coordinate else {return}
 		let viewRegion = MKCoordinateRegion(center: currentCoordinate, latitudinalMeters: 100, longitudinalMeters: 100)
 		self.map.setRegion(viewRegion, animated: true)
 	}
 	
+	// drop a pin at current location
 	@IBAction func locateButton(_ sender: Any) {
 		locatButtonPressed = !locatButtonPressed
 		if(locatButtonPressed){
@@ -230,6 +226,8 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			// remove the layout(navigation routine) after press the locate button
 			map.removeOverlays(map.overlays)
 			
+			
+			// detect if user is parking in a parking strucutre
 			let placesClient = GMSPlacesClient.shared()
 			placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
 				if let error = error {
@@ -259,6 +257,8 @@ UIPickerViewDelegate, UIPickerViewDataSource{
 			})
 		}
 	}
+	
+	
 	func levelTextFieldConfig(textField : UITextField) {
 		levelTextField = textField
 		levelTextField?.placeholder = "Please select the level you parked"
@@ -341,15 +341,13 @@ extension MapViewController: CLLocationManagerDelegate{
 			loginMap = 1
 		}
 		
-		
 		self.map.delegate = self
 	}
-	
-	
 }
 
 
 extension MapViewController: MKMapViewDelegate{
+	// drop a custom pin
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 		if !(annotation is CustomPointAnnotation) {
 			return nil
@@ -366,15 +364,13 @@ extension MapViewController: MKMapViewDelegate{
 			anView?.annotation = annotation
 		}
 		
-		//Set annotation-specific properties **AFTER**
-		//the view is dequeued or created...
-		
 		let cpa = annotation as! CustomPointAnnotation
 		anView?.image = UIImage(named:cpa.imageName)
 		
 		return anView
 	}
 	
+	//draw the navigation route
 	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 		if overlay is MKPolyline{
 			let renderer = MKPolylineRenderer(overlay:overlay)
@@ -384,9 +380,6 @@ extension MapViewController: MKMapViewDelegate{
 		}
 		return MKOverlayRenderer()
 	}
-	
-	
-	
 }
 
 

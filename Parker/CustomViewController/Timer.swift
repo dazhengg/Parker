@@ -37,7 +37,7 @@ class TimerViewController: UIViewController{
     lazy var minitStr = commponent.minute
     lazy var hourStr = commponent.hour
     
-    
+    // make a clock in vc
     lazy var secondHandView: UIView = {
         let secondHandView = UIView()
         secondHandView.backgroundColor = UIColor.red
@@ -85,7 +85,7 @@ class TimerViewController: UIViewController{
         self.view.addSubview(hourHandView)
 		
 		
-		// try to restoring the time data
+		// try to retrieve the time data
 		if  clockTime.clockExistingTimer ?? false{
 			if clockTime.clockTimerPaused ?? false { // if timer is paused
 				seconds = clockTime.clocksecends ?? 0
