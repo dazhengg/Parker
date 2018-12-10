@@ -17,7 +17,7 @@ Lihang Pan, Haoran Zhang, Zekai Zhao, David Zheng
 Please see the GeneralDesign.HEIC under the root directory
 
 # Current List of Third Party Library
-SVProgressHUD, Firebase, JQSMessaging  
+SVProgressHUD, Firebase, JQSMessaging, Ahoy  
 
 # Server Support
 Firebase used to provide realtime database storage and synchornization. 
