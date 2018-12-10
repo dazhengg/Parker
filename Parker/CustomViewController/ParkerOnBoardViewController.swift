@@ -34,7 +34,7 @@ class ParkerPresenter: BasePresenter {
 							bodyText: "Swipe left to get your countdown timer so you will never miss your meters parking or street parking limit.",
 							image: #imageLiteral(resourceName: "SwipeRightToShowCountDownTime")),
 			OnboardingSlide(titleText: "Clock Timer",
-							bodyText: "Swipe right to start your clock timer so you can clearly know how long you have been parked.",
+							bodyText: "Swipe right to start your clock timer so you can clearly know how long you have parked.",
 							image: #imageLiteral(resourceName: "SwipeRightToShowClock")),
 			OnboardingSlide(titleText: "Camera",
 							bodyText: "Swipe up to take a picture for your car or bike, and you will never miss where you parked.",
